@@ -1,0 +1,47 @@
+/* Gaya untuk judul produk */
+h1.text-center {
+  font-size: 2.5rem;
+  margin-top: 5rem;
+}
+
+/* Gaya untuk kartu produk */
+.product-card {
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Tambahkan efek bayangan di bawah ini */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sesuaikan dengan preferensi Anda */
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: #f8f8f8;
+}
+
+/* Gaya untuk tombol keranjang */
+.btn-cart {
+  background-color: #19a7ce;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: #007aab;
+}
+
+/* Gaya untuk harga dan deskripsi */
+.text-center {
+  font-size: 1.2rem;
+}
+.product-card {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.product-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}

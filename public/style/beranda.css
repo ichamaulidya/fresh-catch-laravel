@@ -1,0 +1,21 @@
+.custom-background {
+    background-color: #33bbc5;
+    padding: 20px; /* Sesuaikan dengan ukuran padding yang Anda inginkan */
+}
+
+.custom-background .small-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.36, 0.55, 0.19, 1),
+        transform 0.5s cubic-bezier(0.36, 0.55, 0.19, 1);
+}
+
+.custom-background .small-card.card-entered {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-background .small-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}

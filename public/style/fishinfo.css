@@ -1,0 +1,109 @@
+/* Gaya tombol */
+.btn {
+    color: #000000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+}
+
+.btn:hover {
+    color: #000000;
+    font-size: larger;
+}
+
+.custom-background {
+    background-color: #33bbc5;
+    padding: 20px; /* Sesuaikan dengan ukuran padding yang Anda inginkan */
+}
+/* Gaya pagination */
+.pagination.pagination-circle .page-item {
+    border: none;
+    font-size: 18px;
+    margin: 0 4px;
+    width: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    line-height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    text-align: center;
+    border-radius: 50%;
+}
+
+.pagination.pagination-circle .page-link {
+    background-color: #33bbc5;
+    border-color: #33bbc5;
+    color: #fff;
+    border-radius: 50%; /* Agar tombol berbentuk lingkaran */
+    padding: 5px 12px; /* Ukuran padding tombol */
+    width: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    line-height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    display: flex; /* Menjadikan flex container */
+    align-items: center; /* Membuat angka dan ikon berada di tengah secara vertikal */
+    justify-content: center; /* Membuat angka dan ikon berada di tengah secara horizontal */
+}
+
+.pagination.pagination-circle .page-link:hover {
+    color: #33bbc5;
+    background-color: #fff;
+}
+
+.pagination.pagination-circle .page-item.active .page-link {
+    color: #33bbc5;
+    background-color: #fff;
+    border: 2px solid #33bbc5; /* Warna border saat aktif */
+}
+
+/* Mengubah tampilan ikon panah */
+.pagination-circle .page-item i {
+    font-size: 20px;
+    color: #fff;
+    padding: 10px;
+}
+
+.pagination-circle .page-item i:hover {
+    color: #33bbc5;
+}
+
+.custom-background .card:hover {
+    transform: scale(1.02); /* Memperbesar kartu saat dihover */
+    transition: transform 0.2s ease-in; /* Efek transisi */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Bayangan saat dihover */
+}
+
+.carousel-inner .row .col-lg-6 .bg-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.carousel-inner .row .col-lg-6 .bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menjaga aspek ratio gambar */
+    transition: transform 0.3s ease;
+}
+
+.carousel-inner .row .col-lg-6 .bg-image:hover img {
+    transform: scale(1.1); /* Efek perbesaran gambar saat dihover */
+}
+
+.carousel-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* styles.css */
+.small-card {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.small-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+}

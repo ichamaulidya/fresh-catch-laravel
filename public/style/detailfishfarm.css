@@ -1,0 +1,22 @@
+i {
+    color: #33bbc5;
+}
+
+.btn-custom {
+    background-color: #33bbc5;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+.btn-custom:hover {
+    border: none;
+    transform: scale(1.2);
+    background-color: #fff;
+    color: #33bbc5;
+    transition: transform 0.3s ease-out;
+}

@@ -1,0 +1,109 @@
+.product-detail-container {
+  margin-top: 100px;
+}
+
+.product-detail-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.btn-cart {
+  background-color: #19a7ce;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: #007aab;
+  color: #fff;
+}
+
+/* CSS untuk menonjolkan harga */
+.product-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* CSS untuk Rating */
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  color: gold;
+}
+
+.filled-star {
+  color: gold;
+}
+
+.empty-star {
+  color: #999;
+  /* Warna abu */
+}
+
+.average-rating {
+  font-size: 16px;
+}
+
+.store-menu {
+  margin-top: 50px;
+  padding: 50px 0;
+  background-color: #f8f9fa;
+}
+
+.store-menu h2 {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card-title {
+  font-size: 24px;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.text-left p {
+  margin-bottom: 10px;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.product-card {
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Tambahkan efek bayangan di bawah ini */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sesuaikan dengan preferensi Anda */
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: #f8f8f8;
+}
+
+.product-card h2 {
+  font-size: 1.2rem; /* Ubah ukuran teks judul */
+}
+
+.product-card p {
+  font-size: 1rem; /* Ubah ukuran teks paragraf */
+}
+
+.product-card button {
+  font-size: 0.8rem; /* Ubah ukuran teks tombol */
+}

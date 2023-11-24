@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Freckle+Face&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
+:root {
+    --green: #4ca86f;
+    --yellow: #fff4a3;
+    --black: #292a35;
+    --pink: #ffc0c7;
+    --yellow-hover: #fdf169;
+    --pink-hover: #eea8b0;
+    --bg-green: #ffffff;
+    --bg-pink: #f3ecea;
+    --bg-whiteblue: #91c8e4;
+    --bg-blue: #33bbc5;
+    --card-bg: #e7e9eb;
+    --anjay: #282a35;
+}
+/* navbar */ /* Gaya CSS untuk navbar */
+.navbar {
+    transition: background-color 0.3s;
+    background: rgba(
+        244,
+        243,
+        243,
+        0.173
+    ); /* Atur warna latar belakang navbar dengan alpha (nilai transparansi) */
+    backdrop-filter: blur(10px); /* Efek blur */
+    -webkit-backdrop-filter: blur(
+        10px
+    ); /* Efek blur untuk browser berbasis Webkit (misalnya, Safari) */
+}
+
+/* Gaya CSS untuk teks navbar sebelum di-hover */
+.navbar .nav-link {
+    color: #000000; /* Warna teks putih */
+    transition: color 0.3s ease-in-out; /* Efek transisi warna */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+/* Gaya CSS untuk mengubah latar belakang navbar saat dihover */
+.navbar.navbar-white {
+    background-color: #ffffff !important;
+}
+
+/* Gaya CSS untuk teks navbar saat di-hover */
+.navbar.navbar-white .nav-link {
+    color: #000; /* Warna teks saat di-hover (hitam) */
+}
+
+.navbar.navbar-white .nav-link:hover {
+    color: #33bbc5; /* Ubah warna teks saat di-hover menjadi hitam */
+}
+
+/* Gaya CSS untuk teks navbar saat di-hover lagi dengan kursor */
+.navbar.navbar-white .nav-link.hovered {
+    color: #33bbc5; /* Warna teks saat di-hover lagi (biru) */
+}
+
+/* Gaya CSS untuk menambahkan jarak antara item navbar */
+.navbar-nav .nav-item {
+    margin-right: 15px; /* Menambahkan jarak kanan antara item */
+}
+
+/* Gaya CSS untuk teks navbar saat aktif */
+.navbar .nav-item.active .nav-link {
+    color: #33bbc5; /* Warna teks saat aktif */
+}
+
+/* Gaya CSS untuk teks navbar saat di-hover pada halaman aktif */
+.navbar .nav-item.active .nav-link:hover {
+    color: #33bbc5; /* Warna teks saat di-hover pada halaman aktif */
+}
+
+/* Untuk menghilangkan jarak kanan dari item terakhir */
+.navbar-nav .nav-item:last-child {
+    margin-right: 0;
+}
+.navbar-nav .nav-link:hover {
+    color: #33bbc5; /* Warna teks saat hover */
+    transition: color 0.3s ease-in-out; /* Efek transisi warna */
+}
+
+.animated-button .navbar-toggler-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.animated-button.navbar-toggler.collapsed .navbar-toggler-icon {
+    transform: rotate(0deg);
+}
+
+.animated-button.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    transform: rotate(90deg);
+}
+
+/*main konten*/
+.btn-shop {
+    background-color: #33bbc5;
+    color: #fff;
+}
+
+.btn-shop:hover {
+    background-color: #00eeff;
+    color: #000000;
+}
+
+/* Gaya ikon keranjang belanja */
+.bi-cart-dash-fill path {
+    fill: #33bbc5;
+}
+
+/* Gaya ikon akun */
+.bi-person-fill path {
+    fill: #33bbc5;
+}
+.bi-cart-dash-fill:hover svg,
+.bi-person-fill:hover svg {
+    transform: scale(1.2); /* Ubah faktor skala sesuai keinginan Anda */
+    transition: transform 0.2s; /* Animasi perubahan ukuran */
+}
+
+/* Warna ikon saat hover */
+.bi-cart-dash-fill:hover path,
+.bi-person-fill:hover path {
+    fill: #07c8d6; /* Warna saat hover */
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: auto;
+    max-height: 700px; /* Sesuaikan tinggi maksimal sesuai kebutuhan Anda */
+    width: 100%;
+}
+
+.social-icons {
+    font-size: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan Anda */
+}
+
+.social-icon-link {
+    color: #4a4a4a; /* Sesuaikan warna ikon sesuai kebutuhan Anda */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Efek hover */
+}
+
+.social-icon-link:hover {
+    color: #33bbc5; /* Warna yang berbeda saat dihover */
+}

@@ -1,0 +1,121 @@
+/* CSS for the smoother slide-in animation */
+.slide-in {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.carousel-inner .carousel-item.active.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin-bottom: 20px;
+    max-width: 540px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Gaya tambahan untuk gambar */
+.card-img-top {
+    /*width: 100%;*/
+    height: fit-content;
+    object-fit: cover;
+}
+
+#b {
+    background-color: #19a7ce;
+    color: white; /* Warna teks tombol */
+}
+
+#b:hover {
+    background-color: #03c8ff;
+    color: white;
+}
+/* Gaya pagination */
+.pagination.pagination-circle .page-item {
+    border: none;
+    font-size: 18px;
+    margin: 0 4px;
+    width: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    line-height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    text-align: center;
+    border-radius: 50%;
+}
+
+.pagination.pagination-circle .page-link {
+    color: #03c8ff; /* Warna teks link */
+    border: 2px solid #03c8ff; /* Warna border link */
+    border-radius: 50%; /* Agar tombol berbentuk lingkaran */
+    padding: 5px 12px; /* Ukuran padding tombol */
+    width: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    line-height: 30px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    display: flex; /* Menjadikan flex container */
+    align-items: center; /* Membuat angka dan ikon berada di tengah secara vertikal */
+    justify-content: center; /* Membuat angka dan ikon berada di tengah secara horizontal */
+}
+
+.pagination.pagination-circle .page-link:hover {
+    background-color: #03c8ff; /* Warna background saat hover */
+    color: #fff; /* Warna teks saat hover */
+}
+
+.pagination.pagination-circle .page-item.active .page-link {
+    background-color: #03c8ff; /* Warna background saat aktif */
+    color: #fff; /* Warna teks saat aktif */
+    border: 2px solid #03c8ff; /* Warna border saat aktif */
+}
+
+/* Mengubah tampilan ikon panah */
+.pagination-circle .page-item i {
+    font-size: 16px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+    color: #03c8ff;
+}
+
+.pagination-circle .page-item i:hover {
+    color: #ffffff;
+}
+
+/* Menata angka di dalam lingkaran */
+.pagination-circle .page-link span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Menata posisi angka di dalam lingkaran */
+.pagination-circle .page-link .page-number {
+    font-size: 16px; /* Sesuaikan ukuran sesuai kebutuhan Anda */
+}
+
+/* Transisi smooth untuk carousel */
+.carousel-inner {
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    display: flex;
+    transition: opacity 0.5s ease;
+}
