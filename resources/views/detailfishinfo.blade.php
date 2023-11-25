@@ -59,17 +59,17 @@
     <div class="col-md-8 offset-md-2 mt-lg-4 mx-auto">
         <h1 class="text-center" style="margin-top: 90px">{{$fish->judul}}</h1>
         <p class="text-muted text-center">{{$fish->tgl_publikasi}}</p>
-        <img src="{{ asset('image/' . $fish->gambar) }}" class="img-fluid article-image mb-3" alt="Gambar Artikel">
+        <img src="{{ asset('assets/img/artikel/' . $fish->gambar) }}" class="img-fluid article-image mb-3" alt="Gambar Artikel">
     
         <!-- Deskripsi dengan beberapa paragraf -->
-        @foreach (explode("\n", $fish->deskripsi) as $index => $paragraph)
-            @if($index === 0)
-                <p style="text-indent: 30px;">{{ $paragraph }}</p>
-            @else
-                <p style="text-indent: 30px;">{{ $paragraph }}</p>
-            @endif
-        @endforeach
+        <div style="text-align: justify;">
+            @foreach (explode("\n", $fish->deskripsi) as $paragraph)
+                <p style="text-indent: 30px; margin-bottom: 20px;">{{ $paragraph }}</p>
+            @endforeach
+        </div>
     </div>
+    
+    
 
     <!-- footer-->
     <div class="container-sm">

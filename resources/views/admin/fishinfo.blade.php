@@ -218,9 +218,10 @@
                                                         </div>
 
                                                         <div class="mb-3">
-                                                            <label for="createdAt" class="form-label">Description:</label>
-                                                            <input type="text" class="form-control"
-                                                                id="deskripsi" name="deskripsi"  required>
+                                                            <label for="productDescription" class="form-label">
+                                                                Description:</label>
+                                                            <textarea class="form-control" id="deskripsi"
+                                                                name="deskripsi" rows="3"></textarea>
                                                         </div>
 
                                                     </div>

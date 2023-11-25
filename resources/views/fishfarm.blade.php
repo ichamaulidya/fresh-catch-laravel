@@ -70,39 +70,38 @@
 
 
     <div class="container mt-5">
-        <h1 class="text-center fs-8 p-5">Lokasi Kami</h1>
+        <h1 class="text-center fs-8 p-5">Our Location</h1>
         <div class="row justify-content-center">
             <!-- Card 1 -->
             @foreach($farm as $key => $ar)
             <div class="col-md-6 mb-4 d-flex justify-content-center">
                 <a href="/fish farm/{{ $ar->id }}" style="text-decoration: none; color: inherit;">
-                    <div class="card" style="max-width: 540px; width: 100%;">
+                    <div class="card" style="">
                         <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="image/{{$ar->gambar}}" class="img-fluid rounded-start"
-                                    style="height: 100%; border-radius: 10px;" alt="gambar tambak">
-                            </div>
+                            <img src="assets/img/fishfarm/{{$ar->gambar}}" class="img-fluid rounded-start w-100 rounded-img"
+                                    alt="gambar tambak">
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{$ar->nama}}</h5>
-                                    <p class="card-text">{{substr($ar->deskripsi, 0,250)}}</p>
+                                    <p class="card-text">{{substr($ar->deskripsi, 0, 250)}}</p>
                                     <p class="card-text">
-                                        <small class="text-body-secondary">
-                                            <i class="fas fa-map-marker-alt"></i> {{$ar->latitude}}
+                                        <small class="text-body-secondary me-3">
+                                            <i class="fas fa-map-marker-alt me-2 fs-5 mb-2" style="color: #03c8ff;"></i> {{$ar->latitude}}
                                             <br>
-                                            <i class="fas fa-user"></i>{{$ar->kontak}}
+                                            <i class="fas fa-user me-2 fs-5" style="color: #03c8ff;"></i>{{$ar->kontak}}
+
                                         </small>
                                     </p>
                                     <div class="d-flex justify-content-end">
-                                        <a href="https://maps.app.goo.gl/FXwqRFWmbg6WfiQ76" class="btn btn-custom"
-                                            id="b">Lihat di Maps</a>
+                                        <a href="{{$ar->link}}" class="btn btn-custom" id="b">Lihat di Maps</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </a>
             </div>
+            
             @endforeach
         </div>
         

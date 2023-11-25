@@ -73,9 +73,8 @@
                                     <!-- Image -->
                                     <div class="bg-image hover-overlay hover-zoom ripple rounded"
                                         data-mdb-ripple-color="light">
-                                        <img src="{{$c->produk->gambar}}" class="w-100"
-                                            alt="Blue Jeans Jacket" />
-                                        <a href="#!">
+                                        <img src="{{ asset('assets/img/produk/' . $c->produk->gambar) }}" class="w-100" alt="Blue Jeans Jacket" />
+
                                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                         </a>
                                     </div>

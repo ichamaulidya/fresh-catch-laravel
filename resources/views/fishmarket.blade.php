@@ -62,14 +62,13 @@
     <div class="container-sm product-container">
         <h1 class="text-center" style="color: #19a7ce;">Daftar Produk</h1>
         <div class="row mt-4">
-            <!-- Produk 1 -->
-            <!-- Produk 1 -->
+            <!-- Produk -->
             @foreach($produk as $key => $fm)
                 <div class="col-md-3">
                     <div class="product-card">
                         <a href="/fishmarket/{{ $fm->id }}" style="text-decoration: none; color: inherit;">
                             <div>
-                                <img src="image/{{ $fm->gambar }}" alt="Produk 1" class="img-fluid">
+                                <img src="assets/img/produk/{{ $fm->gambar }}" alt="Produk 1" class="img-fluid">
                                 <h2 class="text-center">{{ $fm->nama_produk }}</h2>
                                 <p class="text-center">Rp. {{ $fm->harga }}/kg</p>
                                 <p class="text-center">{{ substr($fm->deskripsi, 0, 52) }}</p>    

@@ -330,7 +330,7 @@
                                             <?php
                                                 if (!empty($row->gambar)) {
                                                     if (is_string($row->gambar)) {
-                                                        echo '<img src="image/' . $row->gambar . '" width="50" height="50">';
+                                                        echo '<img src="assets/img/produk/' . $row->gambar . '" width="50" height="50">';
                                                     } else {
                                                         echo 'Invalid image data';
                                                     }

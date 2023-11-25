@@ -27,7 +27,5 @@ class FishmarketController extends Controller
 
     }
 
-        
-
 }
 ?>

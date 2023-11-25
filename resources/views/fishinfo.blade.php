@@ -68,7 +68,7 @@
                     <div class="row gx-5"> 
                         <div class="col-lg-6 mb-4">
                             <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5">
-                                <img src="image/{{$ar->gambar}}" class="img-fluid" alt="Image 1"
+                                <img src="assets/img/artikel/{{$ar->gambar}}" class="img-fluid" alt="Image 1"
                                         style="border-radius: 10px;" />
                                 <a href="#!">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);">
@@ -111,7 +111,7 @@
                     <div class="col">
                         <a href="/fishinfo/{{ $ar->id }}" style="text-decoration: none; color: inherit;">
                             <div class="card h-100 small-card" style="background: none; border: none;">
-                                <img src="image/{{$ar->gambar}}" class="card-img-top" alt="Hollywood Sign on The Hill" style="border-radius: 10px;" />
+                                <img src="assets/img/artikel/{{$ar->gambar}}" class="card-img-top" alt="Hollywood Sign on The Hill" style="border-radius: 10px;" />
                                 <div class="card-body" style="color: white;">
                                     <h5 class="card-title">{{$ar->judul}}</h5>
                                     <p class="card-text">

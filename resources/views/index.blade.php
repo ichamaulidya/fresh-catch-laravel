@@ -110,38 +110,31 @@
         <h1 class="text-center p-5"><b> Apa saja fitur FreshCatch? </b></h1>
         <p class="text-center fs-6" style="margin-top: -2%; color: gray;">FreshCatch merupakan layanan website berisi
             informasi dan marketplace <br> ikan konsumsi yang berbasis teknologi</p> <br>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
                 <div class="col text-center">
                     <a href="/fishInfo" style="text-decoration: none; color: inherit;">
-                        <div class="card" style="border-radius: 10%; border: none; background: aliceblue;">
-                            <img src="image/p3.jpg" class="card-img-top" alt="..." style="border-radius: 10% 10% 0 0;">
-                            <div class="card-body">
-                                <h5 class="card-title" style="color: black;">Fish Info</h5>
-                            </div>
+                        <div class="card w-75 mx-auto" style="border: none; background: aliceblue; border-radius: 10px;">
+                            <img src="image/info.png" class="card-img-top" alt="...">
                         </div>
                     </a>
                 </div>
                 <div class="col text-center">
                     <a href="/fish farm" style="text-decoration: none; color: inherit;">
-                        <div class="card" style="border-radius: 10%; border: none; background: aliceblue;">
-                            <img src="image/p3.jpg" class="card-img-top" alt="..." style="border-radius: 10% 10% 0 0;">
-                            <div class="card-body">
-                                <h5 class="card-title">Fish Farms</h5>
-                            </div>
+                        <div class="card w-75 mx-auto" style="border: none; background: aliceblue; border-radius: 10px;">
+                            <img src="image/farm.png" class="card-img-top" alt="...">
                         </div>
                     </a>
                 </div>
                 <div class="col text-center">
-                    <a href="/fishMarket" style="text-decoration: none; color: inherit;">
-                        <div class="card" style="border-radius: 10%; border: none; background: aliceblue;">
-                            <img src="image/p3.jpg" class="card-img-top" alt="..." style="border-radius: 10% 10% 0 0;">
-                            <div class="card-body">
-                                <h5 class="card-title">Fish Market</h5>
-                            </div>
+                    <a href="/fish Market" style="text-decoration: none; color: inherit;">
+                        <div class="card w-75 mx-auto" style="border: none; background: aliceblue; border-radius: 10px;">
+                            <img src="image/market.png" class="card-img-top" alt="...">
                         </div>
                     </a>
                 </div>
             </div>
+            
+            
     </div>
     <br><br><br>
 
@@ -153,7 +146,7 @@
                 <div class="col">
                     <a href="/fishinfo/{{ $ar->id }}" style="text-decoration: none; color: inherit;">
                         <div class="card h-100 small-card" style="background: none; border: none;">
-                            <img src="image/{{$ar->gambar}}" class="card-img-top" alt="Hollywood Sign on The Hill"
+                            <img src="assets/img/artikel/{{$ar->gambar}}" class="card-img-top" alt="Hollywood Sign on The Hill"
                                 style="border-radius: 10px;" />
                             <div class="card-body" style="color: white;">
                                 <h5 class="card-title">{{$ar->judul}}</h5>

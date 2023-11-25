@@ -72,9 +72,9 @@
         <!-- Detail Produk -->
         <div class="row">
             <div class="col-md-6">
-                <img src="{{$market -> gambar}}" alt="Produk 1"
-                    class="img-fluid product-detail-image">
+                <img src="{{ asset('assets/img/produk/' . $market->gambar) }}" alt="Produk 1" class="img-fluid product-detail-image w-100">
             </div>
+            
             <div class="col-md-6">
                 <h2 class="mb-1">{{$market -> nama_produk}}</h2>
                 <div class="mb-3">
@@ -106,25 +106,23 @@
                 <p class="mb-3">{{$market -> deskripsi}}</p>
 
                 <div class="text-left mt-4">
-                    <button class="btn btn-cart" id="buy-now-btn">
-                        <i class="fas fa-shopping-cart" style="font-size: 1rem;"></i> Beli Sekarang
-                    </button>
-                    {{-- <button class="btn btn-cart" id="add-to-cart-btn">
-                        <i class="fas fa-cart-plus" style="font-size: 1rem;"></i> Tambah ke Keranjang
-                    </button> --}}
-
-                    <form method="POST" action="{{ url('/cart/store') }}">
-                        @csrf
-                        <input type="hidden" name="productId" value="{{ $market->id }}">
-                        <button type="submit" class="btn btn-cart" id="add-to-cart-btn">
-                            <i class="fas fa-cart-plus" style="font-size: 1rem;"></i> Tambah ke Keranjang
-                        </button>
+                    <form action="{{ url('/cart/store') }}" method="POST">
+                        @csrf <!-- Tambahkan token CSRF di sini -->
+                        <input type="hidden" name="id_user" value="{{ session('id_user') }}">
+                        <input type="hidden" name="id_produk" value="{{ $market->id }}">
+                        <input type="hidden" name="nama_produk" value="{{ $market->nama_produk }}">
+                        <input type="hidden" name="harga" value="{{$market->harga }}">
+                        <input type="hidden" name="kuantitas" value="1"> <!-- Default quantity is set to 1 -->
+                        <div class="text-left mt-4">
+                            <button class="btn btn-cart" id="buy-now-btn">
+                                <i class="fas fa-shopping-cart" style="font-size: 1rem;"></i> Buy Now
+                            </button>
+                            <button type="submit" class="btn btn-cart" onclick="addToCart('{{ session('id_user') }}', '{{ $market->id }}', '{{ $market->user_id }}')">
+                                <i class="fas fa-cart-plus" style="font-size: 1rem;"></i> Add To Cart
+                            </button>
+                        </div>
                     </form>
-                    
-                    
                 </div>
-
-                
             </div>
         </div>
     </div>
@@ -176,21 +174,55 @@
         </h1>
     <div class="row mt-4">
         <div class="row d-flex">
-            @foreach($produk as $key => $mf)
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+                @foreach($produk as $key => $mf)
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card product-card">
+                            <a href="/fishmarket/{{ $mf->id }}" style="text-decoration: none; color: inherit;">
+                                <img src="{{ asset('assets/img/produk/' . $mf->gambar) }}" alt="Produk" class="card-img-top img-fluid">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $mf->nama_produk }}</h5>
+                                    <p class="card-text">{{ $mf->harga }}</p>
+                                    <p class="card-text">{{ substr($mf->deskripsi, 0, 50) }}</p>
+                                </div>
+                            </a>
+                            <form action="{{ url('/cart/store') }}" method="POST">
+                                @csrf <!-- Add CSRF token here -->
+                                <input type="hidden" name="id_user" value="{{ session('id_user') }}">
+                                <input type="hidden" name="id_produk" value="{{ $mf->id }}">
+                                <input type="hidden" name="nama_produk" value="{{ $mf->nama_produk }}">
+                                <input type="hidden" name="harga" value="{{ $mf->harga }}">
+                                <input type="hidden" name="kuantitas" value="1">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-cart" onclick="addToCart('{{ session('id_user') }}', '{{ $mf->id }}', '{{ $mf->user_id }}')">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            
+            
+            
+            
+            {{-- @foreach($produk as $key => $mf)
             <div class="col-md-2">
                 <div class="product-card">
                     <a href="/fishmarket/{{ $mf->gambar }}" style="text-decoration: none; color: inherit;">
                         <div>
-                            <img src="image/jakub-kapusnak-vLQzopDRSNI-unsplash.jpg" alt="Produk 1" class="img-fluid">
+                            <img src="{{ asset('assets/img/produk/' . $mf->gambar) }}" alt="Produk 1" class="img-fluid product-detail-image w-100">
                             <h2>{{ $mf->nama_produk }}</h2>
                             <p>{{ $mf->harga }}</p>
                             <p>{{ substr($mf->deskripsi, 0, 50) }}</p>
                         </div>
                     </a>
-                    <button class="btn btn-cart">Masukkan ke Keranjang</button>
+                    <button class="btn btn-cart">Add To Cart</button>
                 </div>
-            </div>
-            @endforeach
+            </div> 
+            @endforeach--}}
+            
         </div>
 
     <!--footer-->
@@ -251,7 +283,53 @@
 
     <!-- Bootstrap JS  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script>
+$(document).ready(function () {
+        // Get necessary elements
+        var quantityInput = $('#quantity');
+        var minusBtn = $('#minus-btn');
+        var plusBtn = $('#plus-btn');
+        var totalPriceDisplay = $('#total-price');
+
+        // Get the initial price and quantity
+        var price = parseFloat("{{$market->harga}}");
+        var quantity = parseInt(quantityInput.val());
+
+        // Function to update total price
+        function updateTotalPrice() {
+            var total = price * quantity;
+            totalPriceDisplay.text("Total Price: " + total);
+        }
+
+        // Initial update
+        updateTotalPrice();
+
+        // Event listener for minus button
+        minusBtn.click(function () {
+            if (quantity > 1) {
+                quantity--;
+                quantityInput.val(quantity);
+                updateTotalPrice();
+            }
+        });
+
+        // Event listener for plus button
+        plusBtn.click(function () {
+            quantity++;
+            quantityInput.val(quantity);
+            updateTotalPrice();
+        });
+
+        // Event listener for manual quantity input change
+        quantityInput.change(function () {
+            quantity = parseInt($(this).val());
+            updateTotalPrice();
+        });
+    });
+
+
         document.addEventListener("DOMContentLoaded", function () {
             var quantityInput = document.getElementById("quantity");
             var minusBtn = document.getElementById("minus-btn");
