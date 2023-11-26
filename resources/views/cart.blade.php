@@ -91,8 +91,8 @@
                                     <form action="{{ route('cart.delete') }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="id_cart" value="{{ $c->id }}">
-                                        <input type="hidden" name="id_user" value="{{ $c->user_id }}">
+                                        <input type="hidden" name="id_cart" value="{{ $c->produk->id }}">
+                                        <input type="hidden" name="id_user" value="{{ $c->produk->user_id }}">
                                         <button type="submit" class="btn btn-danger fs-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?')">Remove</button>
                                     </form>
                                 @else
@@ -113,14 +113,19 @@
                                         </button>
 
                                         <div class="form-outline text-center">
-                                            <input id="quantity-input-{{$c->produk->id}}" min="1" name="quantity" value="{{$c->kuantitas}}" 
-                                                type="number" class="form-control"/>
-                                            <label class="form-label mt-2" for="form1">Kuantitas /KG</label>
-                                            <p class="text-start text-md-center">
-                                                <strong>Rp. {{$c->produk->harga * $c->kuantitas}}</strong>
-                                            </p>
+                                            @if($c->produk) <!-- Check if $c->produk is not null -->
+                                                <input id="quantity-input-{{$c->produk->id}}" min="1" name="quantity" value="{{$c->produk->kuantitas}}" type="number" class="form-control"/>
+                                                <label class="form-label mt-2" for="form1">Kuantitas /KG</label>
+                                                <p class="text-start text-md-center">
+                                                    <strong>Rp. {{$c->produk->harga * $c->produk->kuantitas}}</strong>
+                                                </p>
+                                            @else
+                                                <!-- Handle the case where $c->produk is null (optional) -->
+                                                <!-- You can display a message or handle it according to your needs -->
+                                                <p><strong>Product Not Available</strong></p>
+                                            @endif
                                         </div>
-
+                                        
                                         <button class="btn custom-btn-quantity px-3 ms-2" id="plus"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                             <i class="fas fa-plus"></i>
@@ -142,15 +147,6 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <!-- <li
-                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                    Products
-                                    <span>Rp. 100.000</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    Jumlah item
-                                    <span>/KG</span>
-                                </li> -->
                                 <li
                                     class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                     <div>
@@ -159,9 +155,19 @@
                                     <span><strong>Rp. {{$total}}</strong></span>
                                 </li>
                             </ul>
-                            <button type="button" class="btn custom-btn-checkout btn-lg btn-block">
-                                Checkout
-                            </button>
+                            <form action="{{ url('/cart/transaksi') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_user" value="{{ session('id_user') }}">
+                                <input type="hidden" name="id_produk" value="{{ $c->id }}">
+                                <input type="hidden" name="nama_produk" value="{{ $c->nama_produk }}">
+                                <input type="hidden" name="harga" value="{{$total}}">
+                                <input type="hidden" name="kuantitas" value="1">
+                                <div class="text-center">
+                                    <button type="button" class="btn custom-btn-checkout btn-lg btn-block" onclick="addToTransaksi('{{ session('id_user') }}', '{{ $c->id }}', '{{ $c->user_id }}')">
+                                        Checkout
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -106,12 +106,12 @@
                         </h4>
                     </div>
                 </div>
-                <div class="container card-body p-5 text-black ">
-                    <div class="mb-5" style="margin-top: 5rem;">
-                        <div class="container border bg-body rounded-4 shadow-sm p-4 mt-4">
-                            @foreach($profile as $p)
-                            <div class="row flex-column">
-                                <a href="/editprofile/{{$p->id}}" class="text-decoration-none text-black">
+                <div class="container card-body p-5 text-black">
+                <div class="mb-5" style="margin-top: 5rem;">
+                    <div class="container border bg-body rounded-4 shadow-sm p-4 mt-4">
+                        <div class="row flex-column">
+                            @if(!empty(session('user')))
+                                <a href="/editprofile/{{(session('user')->id)}}" class="text-decoration-none text-black">
                                     <div class="col p-3 fs-5 d-flex align-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5"
                                             class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -122,6 +122,10 @@
                                         <span class="ms-4">Edit Profile</span>
                                     </div>
                                 </a>
+                            @else
+                                <!-- Handle the case where the user is not authenticated -->
+                                <p>Please log in to edit your profile.</p>
+                            @endif
 
                                 <a href="/editaddress" class="text-decoration-none text-black">
                                     <div class="col  p-3 fs-5 d-flex align-items-center">
@@ -147,7 +151,6 @@
                                     </div>
                                 </a>
                             </div>
-                        @endforeach
                         </div>
                         @endif
                     </div>

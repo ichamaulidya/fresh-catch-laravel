@@ -13,18 +13,28 @@ class ProfilController extends Controller
         return view('profil');
     }
 
-    public function editprofil($id) {
-        // Menggunakan model User dengan nama yang sesuai di aplikasi Anda
-        $profile = User::find($id);
+    public function editprofil($id = null) {
+        // Use the authenticated user if no ID is provided
+        if (!$id) {
+            $user = auth()->user();
     
-        // Periksa apakah pengguna ditemukan
-        if (!$profile) {
-            // Tangani kasus di mana pengguna tidak ditemukan, misalnya, redirect ke halaman error atau tampilkan pesan kesalahan
-            return redirect()->route('error.page')->with('error', 'Pengguna tidak ditemukan');
+            if (!$user) {
+                return redirect()->route('error.page')->with('error', 'Pengguna tidak ditemukan');
+            }
+        } else {
+            // Retrieve user by ID
+            $user = User::find($id);
+    
+            if (!$user) {
+                return redirect()->route('error.page')->with('error', 'Pengguna tidak ditemukan');
+            }
         }
     
-        return view('editprofil', ['user' => $profile]);
+        return view('editprofil', ['user' => $user]);
     }
+    
+    
+    
     
 
 

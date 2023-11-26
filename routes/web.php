@@ -8,11 +8,13 @@ use App\Http\Controllers\FishinfoController;
 use App\Http\Controllers\FishmarketController;
 use App\Http\Controllers\DetailFishmarketController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CreateNewController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AdminController;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +59,9 @@ Route::group(['middleware' => 'check.user.session'], function () {
 
     // Rute untuk menambahkan produk ke keranjang
     Route::post('/cart/store', [CartController::class, 'store_cart'])->name('cart.store');
+
+    // rute untuk menambah keranjang ke transaksi 
+    Route::post('/cart/transaksi', [TransaksiController::class, 'toTransaksi'])->name('cart.transaksi');
 
     Route::put('/update-cart-quantity',  [CartController::class, 'updateCartQuantity'])->name('update-cart-quantity');
 
