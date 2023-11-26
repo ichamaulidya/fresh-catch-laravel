@@ -258,10 +258,12 @@
                                 <div class="avatar avatar-xl">
                                     <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
                                 </div>
-                                <div class="ms-3">
-                                    <h5 class="font-bold">Fresh Catch</h5>
-                                    <h6 class="text-muted mb-0" style="font-size: 14px;">Freshcatch@gmail.com</h6>
-                                </div>
+                                @if(!empty(session('user')))
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold fs-6">{{ (session('user')-> nama)}}</h5>
+                                        <h6 class="text-muted mb-0 text-sm">{{ (session('user')-> email)}}</h6>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -418,7 +420,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>In Order</th>
+                                        <th>Id Order</th>
                                         <th>Name</th>
                                         <th>Address</th>
                                         <th>Total Sales</th>
@@ -427,188 +429,79 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-success">Done</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-light-dark">Sent</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-success">Done</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-light-dark">Sent</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $cUrl = curl_init();
+                            
+                                    $options = array(
+                                        CURLOPT_URL => 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getAllTtransaksi',
+                                        CURLOPT_CUSTOMREQUEST => 'GET',
+                                        CURLOPT_RETURNTRANSFER => TRUE
+                                    );
+                            
+                                    curl_setopt_array($cUrl, $options);
+                            
+                                    $response = curl_exec($cUrl);
+                            
+                                    $data = json_decode($response);
+                            
+                                    curl_close($cUrl);
+                            
+                                    foreach ($data as $row) :
+                                        // Set warna berdasarkan status
+                                        $status = empty($row->created_add) ? '' : $row->status;
+                                        switch ($status) {
+                                            case 'waiting_payment':
+                                                $bgColor = '#C70039';
+                                                break;
+                                            case 'packing':
+                                                $bgColor = '#C07F00';
+                                                break;
+                                            case 'send':
+                                                $bgColor = '#102C57';
+                                                break;
+                                            case 'done':
+                                                $bgColor = '#606C5D';
+                                                break;
+                                            default:
+                                                $bgColor = 'black';
+                                                break;
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td><?= (empty($row->id_order) ? '' : $row->id_order) ?></td>
+                                            <td><?= (empty($row->nama_user) ? '' : $row->nama_user) ?></td>
+                                            <td><?= (empty($row->address) ? '' : '' . $row->address) ?></td>
+                                            <td><?= (empty($row->total_harga) ? '' : 'Rp. ' . $row->total_harga) ?></td>
+                                            <td><?= (empty($row->created_add) ? '' : '' . $row->created_add) ?></td>
+                                            <!-- Tambahkan style untuk warna berdasarkan nilai status -->
+                                            <td class="badge text-white" style="background-color: <?= $bgColor ?>">
+                                                <?= (empty($row->created_add) ? '' : $row->status) ?>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-sm edit" data-id="<?= $row->_id ?>"  data-toggle="modal"
+                                                    data-target="#editModal"><i class="bi bi-pencil-square"></i></a>
+                                            </td>
+                                            <td>
+                                                <form action="<?= route('deleteOrder', ['id' => $row->_id]) ?>" method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="<?= csrf_token() ?>">
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal" onclick="return confirm('Apakah anda yakin akan menghapus data?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                        <?php endforeach;
+
+                                        if (empty($data)) {
+                                            echo '<tr><td colspan="5" class="text-center">Tidak ada data</td></tr>';
+                                        }
+                                        ?>
                                 </tbody>
                             </table>
+                            
+                            
                         </div>
                     </div>
                     <!-- Edit Modal -->
@@ -671,10 +564,39 @@
                     </div>
                 </section>
             </div>
-
-
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.edit').click(function() {
+                var id = $(this).data('id');
+                
+                // Cetak nilai id ke konsol log
+                console.log(id);
+                
+                $.ajax({
+                    url: 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getOrderById?id=' + id,
+                    type: 'GET',
+                    success: function(res) {
+                        var data = res[0]; // Use 'res' instead of 'data'
+                        $('#editModal').modal('show');
+                            
+                        $('#id').val(data._id);
+                        $('#nama_user').val(data.nama_user);
+                        $('#harga_produk').val(data.harga);
+                        $('#deskripsi_produk').val(data.deskripsi);
+                        $('#dibuat_produk').val(data.dibuat);
+                        $('#gambar_produk').val(data.gambar);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

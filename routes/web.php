@@ -78,13 +78,9 @@ Route::group(['middleware' => 'check.user.session'], function () {
     //     ->name('cart.addToCart');
 
         //chat
-    Route::get('/chat', [
-        ChatController::class, 'chat'
-    ]);
+        Route::get('/chat', [ChatController::class, 'chat']);
+        Route::post('/postchat', [ChatController::class, 'postchat']);
 
-    Route::post('/postchat', [
-        ChatController::class,  'postchat'
-    ]);
 
 
 });
@@ -119,8 +115,9 @@ Route::group(['middleware' => 'check.user.session'], function () {
     Route::delete('/deletefishproduk/{id}', [AdminController::class, 'deleteproduk'])->name('deleteProduct');
     Route::post('/addproduk', [AdminController::class, 'addproduk']);
     //order    
-    Route::get('/order', [AdminController::class, 'order']);
+    Route::get('/order', [AdminController::class, 'order'])->name('admin.order');
     Route::get('/waitingPayment', [AdminController::class, 'waitingPayment']);
+    Route::delete('/deleteOrder/{id}', [AdminController::class, 'deleteOrder'])->name('deleteOrder');
     Route::get('/packing', [AdminController::class, 'packing']);
     Route::get('/sent', [AdminController::class, 'sent']);
     Route::get('/done', [AdminController::class, 'done']);

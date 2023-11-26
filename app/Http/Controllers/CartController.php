@@ -72,7 +72,7 @@ class CartController extends Controller
 
             return redirect('/cart');
         } else {
-            // Handle the case where the user is not logged in
+           
         }
     }
 

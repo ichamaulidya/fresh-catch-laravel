@@ -10,10 +10,7 @@ class Chat extends Model
     use HasFactory;
     protected $connection='mongodb';
     protected $collection='chat';
-    protected $fillable=[
-        'pengirim', 'pesan', 'waktu', 'chat_room_id'
-    ];
-    public function users(){
-        return $this->belongsTo(User::class, 'pengirim');
-    }
+    protected $fillable = ['pesan', 'pengirim', 'waktu', 'chat_room_id'];
+
+    
 }

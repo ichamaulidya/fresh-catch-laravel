@@ -59,16 +59,16 @@
                         @endforeach
                     </div>
                     <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                        <form action="/postchat" method='post' class="d-flex">
+                        <form action="{{ url('/postchat') }}" method="post" class="d-flex flex-grow-1">
                             @csrf
-                            <input type="text" name='pesan' class="form-control col-10 mr-2"
+                            <input type="text" name="pesan" class="form-control mr-2 flex-grow-1"
                                 placeholder="Type message" aria-label="Recipient's username"
                                 aria-describedby="button-addon2" />
-                            <input type="hidden" name='crid' value="{{$crid}}" class="form-control" />
-                            <button class="btn btn-warning" type="submit" id="button-addon2"
-                                style="padding-top: .55rem;">Kirim</button>
+                            <input type="hidden" name="crid" value="{{ $crid }}" class="form-control" />
+                            <button class="btn btn-warning" type="submit" id="button-addon2">Kirim</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>

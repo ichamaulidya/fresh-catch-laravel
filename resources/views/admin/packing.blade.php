@@ -259,10 +259,12 @@
                                 <div class="avatar avatar-xl">
                                     <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
                                 </div>
-                                <div class="ms-3">
-                                    <h5 class="font-bold">Fresh Catch</h5>
-                                    <h6 class="text-muted mb-0" style="font-size: 14px;">Freshcatch@gmail.com</h6>
-                                </div>
+                                @if(!empty(session('user')))
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold fs-6">{{ (session('user')-> nama)}}</h5>
+                                        <h6 class="text-muted mb-0 text-sm">{{ (session('user')-> email)}}</h6>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

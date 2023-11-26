@@ -355,8 +355,23 @@ class AdminController extends Controller
         }
     }
 
+    public function deleteOrder($id)
+    {
+        // Make sure to validate and sanitize the $id parameter to avoid security issues
 
+        $response = Http::delete('https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/deleteByOrder?id=' . urlencode($id));
 
+        if ($response->failed()) {
+            // Handle error
+            $errorMessage = $response->body();
+            return response()->json(['status' => 'fail', 'message' => $errorMessage], 500);
+            // Adjust the status code and response format based on your needs
+        } else {
+            // Redirect to a specific route or URL
+            return redirect()->route('admin.order'); // Adjust the route name as needed
+        }
+
+    }
 
 
     public function order()

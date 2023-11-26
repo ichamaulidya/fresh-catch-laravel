@@ -147,7 +147,6 @@
         </div>
 
         <div id="main">
-            <!-- Modal Konfirmasi Logout -->
             <div id="logoutModal" style="display: none;">
                         <p>Anda yakin ingin logout?</p>
                         <button onclick="logout()">Ya</button>
@@ -179,10 +178,12 @@
                                     <div class="avatar avatar-lg">
                                         <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
                                     </div>
+                                    @if(!empty(session('user')))
                                     <div class="ms-3 name">
-                                        <h5 class="font-bold fs-6">Fresh Catch</h5>
-                                        <h6 class="text-muted mb-0 text-sm">Freshcatch@gmail.com</h6>
+                                        <h5 class="font-bold fs-6">{{ (session('user')-> nama)}}</h5>
+                                        <h6 class="text-muted mb-0 text-sm">{{ (session('user')-> email)}}</h6>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
