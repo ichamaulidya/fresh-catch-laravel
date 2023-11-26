@@ -21,8 +21,14 @@ class CartController extends Controller
 
             foreach ($cart as $cartItem) {
                 $produk = Fishmarket::find($cartItem->produk_id);
-                $cartItem->produk = $produk;
-                $total += $cartItem->kuantitas * $produk->harga;
+
+                // Check if $produk is not null before accessing its properties
+                if ($produk) {
+                    $cartItem->produk = $produk;
+                    $total += $cartItem->kuantitas * $produk->harga;
+                } else {
+                    // Handle the case where $produk is null (e.g., log a message, skip the item, etc.)
+                }
             }
 
             return view('cart', ['cart' => $cart, 'total' => $total]);
@@ -31,6 +37,7 @@ class CartController extends Controller
             // You can redirect or display an error message here.
         }
     }
+
 
     public function store_cart(Request $request)
     {

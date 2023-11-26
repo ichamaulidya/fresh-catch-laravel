@@ -71,27 +71,33 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                     <!-- Image -->
-                                    <div class="bg-image hover-overlay hover-zoom ripple rounded"
-                                        data-mdb-ripple-color="light">
-                                        <img src="{{ asset('assets/img/produk/' . $c->produk->gambar) }}" class="w-100" alt="Blue Jeans Jacket" />
-
+                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                        @if ($c->produk)
+                                            <img src="{{ asset('assets/img/produk/' . $c->produk->gambar) }}" class="w-100" alt="Blue Jeans Jacket" />
                                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                        </a>
+                                        @else
+                                            {{-- Handle the case where $c->produk is null (e.g., display a placeholder image, show an error message, etc.) --}}
+                                            <span>Product not found</span>
+                                        @endif
                                     </div>
+                                    
                                     <!-- Image -->
                                 </div>
 
                                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                 <!-- Data -->
-                                    <p><strong>{{$c->produk->nama_produk}}</strong></p>
+                                @if ($c->produk)
+                                <p><strong>{{ $c->produk->nama_produk }}</strong></p>
                                     <form action="{{ route('cart.delete') }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id_cart" value="{{ $c->id }}">
-                                    <input type="hidden" name="id_user" value="{{ $c->user_id }}">
-                                    <button type="submit" class="btn btn-danger fs-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?')">Remove</button>
-                                </form>
-
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id_cart" value="{{ $c->id }}">
+                                        <input type="hidden" name="id_user" value="{{ $c->user_id }}">
+                                        <button type="submit" class="btn btn-danger fs-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?')">Remove</button>
+                                    </form>
+                                @else
+                                    <p><strong>Product Not Available</strong></p>
+                                @endif
                                     <!-- Data -->
                                 </div>
 
