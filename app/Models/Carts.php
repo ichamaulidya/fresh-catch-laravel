@@ -8,9 +8,15 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Carts extends Model
 {
     use HasFactory;
-    protected $connection='mongodb';
-    protected $collection='cart';
+
+    protected $connection = 'mongodb';
+    protected $collection = 'cart';
     protected $fillable = [
-        'user_id', 'produk_id','nama_produk','harga','kuantitas',
+        'user_id', 'produk_id', 'nama_produk', 'harga', 'kuantitas',
     ];
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'id_cart');
+    }
 }

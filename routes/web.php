@@ -14,6 +14,10 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CreateNewController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AIController;
+use App\Http\Controllers\kirimEmailController;
+use App\Http\Controllers\BotController;
+
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +35,12 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/bot', [BotController::class, 'bot'])->name('bot');
+
+Route::get('/chat', function () {
+    return view('index');
+});
+Route::post('/chat-gpt', [AIController::class, 'chatGPT']);
 
 Route::get('/fish farm', [FishfarmController::class, 'fishfarm']);
 Route::get('/fish-farm/{id}', [DetailFishfarmController::class, 'detailFishfarm']);
@@ -56,20 +66,27 @@ Route::group(['middleware' => 'check.user.session'], function () {
     
     // Rute untuk menampilkan keranjang belanja
     Route::get('/cart', [CartController::class, 'Cart'])->name('cart');
-
-    // Rute untuk menambahkan produk ke keranjang
     Route::post('/cart/store', [CartController::class, 'store_cart'])->name('cart.store');
-
-    // rute untuk menambah keranjang ke transaksi 
-    Route::post('/cart/transaksi', [TransaksiController::class, 'toTransaksi'])->name('cart.transaksi');
-
     Route::put('/update-cart-quantity',  [CartController::class, 'updateCartQuantity'])->name('update-cart-quantity');
-
-    // Rute untuk menghapus item dari keranjang
     Route::delete('/cart/delete', [CartController::class, 'deleteCart'])->name('cart.delete');
 
+    
+    // Route to display the payment page
+    Route::get('/payment', [TransaksiController::class, 'payment'])->name('payment');
+    Route::post('/payment/pesan', [TransaksiController::class, 'pesan'])->name('pesan');
+
+    
+
     Route::get('/profil', [ProfilController::class, 'Profil'])->name('profil');
-    Route::get('/editprofile/{id}', [ProfilController::class, 'editprofil']);
+    Route::put('/profil/editprofil', [ProfilController::class, 'editprofil'])->name('editprofil');
+    Route::put('/profil/editalamat', [ProfilController::class, 'editalamat'])->name('editalamat');
+   
+    // Route::post('/checkout', [TransaksiController::class, 'Checkout'])->name('checkout');
+
+    Route::post('/email', [kirimEmailController::class, 'email'])->name('checkout');
+
+    
+
 
     
 
@@ -85,7 +102,6 @@ Route::group(['middleware' => 'check.user.session'], function () {
     Route::post('/postchat', [
         ChatController::class,  'postchat'
     ]);
-
 
 });
 
@@ -119,11 +135,10 @@ Route::group(['middleware' => 'check.user.session'], function () {
     Route::delete('/deletefishproduk/{id}', [AdminController::class, 'deleteproduk'])->name('deleteProduct');
     Route::post('/addproduk', [AdminController::class, 'addproduk']);
     //order    
-    Route::get('/order', [AdminController::class, 'order']);
-    Route::get('/waitingPayment', [AdminController::class, 'waitingPayment']);
-    Route::get('/packing', [AdminController::class, 'packing']);
-    Route::get('/sent', [AdminController::class, 'sent']);
-    Route::get('/done', [AdminController::class, 'done']);
-    Route::get('/chatadmin', [AdminController::class, 'chat']);
+    Route::get('/order', [AdminController::class, 'order'])->name('admin.order');
+    Route::delete('/deleteOrder/{id}', [AdminController::class, 'deleteOrder'])->name('deleteOrder');
+    Route::put('/admin/updateOrder', [AdminController::class, 'updateOrder'])->name('admin.updateOrder');
+    Route::get('/pdf', [AdminController::class, 'pdf']);
+    Route::get('/chatadmin', [AdminController::class, 'chatAdmin'])->name('chatadmin');
     // Add other admin routes as needed
 });

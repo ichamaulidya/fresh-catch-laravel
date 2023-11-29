@@ -37,22 +37,33 @@
                         <a class="nav-link" href="/fish farm">Fish Farm</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/fish info">Fish Info</a>
+                        <a class="nav-link" href="/fishInfo">Fish Info</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/fishMarket">Fish Market</a>
                     </li>
                 </ul>
-                <a href="/cart" class="bi bi-cart-dash-fill" style="margin-right: 15px;"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-cart-dash-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z" />
-                    </svg></a>
-                <a href="/login" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
-                        height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                    </svg></a>
+                <div  style="display: grid; grid-template-columns: repeat(3, auto); gap: 15px;">
+                    <a href="/cart" class="bi bi-cart-dash-fill" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                            <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+                        </svg>
+                    </a>
+
+                    @if(!empty(session('user')))
+                        <a href="/profil" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @else    
+                        <a href="/login" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>
@@ -61,41 +72,45 @@
             <div class="row d-flex justify-content-center my-4">
                 <div class="col-md-8">
                     <div class="card mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="mb-0">Produk</h5>
+                        <div class="card-header py-3" style="background-color: #19a7ce; color: #fff"  >
+                            <h5 class="mb-0">Wishlist Produk</h5>
                         </div>
                         <div class="card-body">
                             
-                        @foreach($cart as $c )
+                            @foreach($cart as $c)
                             <!-- Single item -->
                             <div class="row">
                                 <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                                     <!-- Image -->
-                                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                                        @if ($c->produk)
-                                            <img src="{{ asset('assets/img/produk/' . $c->produk->gambar) }}" class="w-100" alt="Blue Jeans Jacket" />
-                                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
-                                        @else
-                                            {{-- Handle the case where $c->produk is null (e.g., display a placeholder image, show an error message, etc.) --}}
-                                            <span>Product not found</span>
-                                        @endif
-                                    </div>
-                                    
+                                    @if($c->produk && $c->produk->gambar)
+                                    <a href="{{ url('/fishmarket/' . $c->produk_id) }}" style="text-decoration: none; color: inherit;">
+                                        <img src="{{ asset('assets/img/produk/' . $c->produk->gambar) }}" class="w-100" alt="Product Image" />
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                    </a>
+                                    @else
+                                        <!-- Handle the case where $c->produk or $c->produk->gambar is null (optional) -->
+                                        <!-- You can display a placeholder image or handle it according to your needs -->
+                                        <div class="bg-image">
+                                            <img src="{{ asset('path/to/placeholder-image.jpg') }}" class="w-100" alt="Placeholder Image" />
+                                        </div>
+                                    @endif
                                     <!-- Image -->
-                                </div>
+                                </div>                    
 
                                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                                 <!-- Data -->
-                                @if ($c->produk)
-                                <p><strong>{{ $c->produk->nama_produk }}</strong></p>
+                                @if($c->produk) <!-- Check if $c->produk is not null -->
+                                    <p><strong>{{ $c->produk->nama_produk }}</strong></p>
                                     <form action="{{ route('cart.delete') }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <input type="hidden" name="id_cart" value="{{ $c->produk->id }}">
-                                        <input type="hidden" name="id_user" value="{{ $c->produk->user_id }}">
+                                        <input type="hidden" name="id_cart" value="{{ $c->id }}">
+                                        <input type="hidden" name="id_user" value="{{ $c->user_id }}">
                                         <button type="submit" class="btn btn-danger fs-sm" onclick="return confirm('Are you sure you want to remove this item from the cart?')">Remove</button>
                                     </form>
                                 @else
+                                    <!-- Handle the case where $c->produk is null (optional) -->
+                                    <!-- You can display a message or handle it according to your needs -->
                                     <p><strong>Product Not Available</strong></p>
                                 @endif
                                     <!-- Data -->
@@ -114,10 +129,10 @@
 
                                         <div class="form-outline text-center">
                                             @if($c->produk) <!-- Check if $c->produk is not null -->
-                                                <input id="quantity-input-{{$c->produk->id}}" min="1" name="quantity" value="{{$c->produk->kuantitas}}" type="number" class="form-control"/>
+                                                <input id="quantity-input-{{$c->produk->id}}" min="1" name="quantity" value="{{$c->kuantitas}}" type="number" class="form-control"/>
                                                 <label class="form-label mt-2" for="form1">Kuantitas /KG</label>
                                                 <p class="text-start text-md-center">
-                                                    <strong>Rp. {{$c->produk->harga * $c->produk->kuantitas}}</strong>
+                                                    <strong>Rp. {{$c->produk->harga * $c->kuantitas}}</strong>
                                                 </p>
                                             @else
                                                 <!-- Handle the case where $c->produk is null (optional) -->
@@ -125,7 +140,7 @@
                                                 <p><strong>Product Not Available</strong></p>
                                             @endif
                                         </div>
-                                        
+
                                         <button class="btn custom-btn-quantity px-3 ms-2" id="plus"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                             <i class="fas fa-plus"></i>
@@ -136,38 +151,6 @@
                             </div>
                             <hr class="my-4" />
                             @endforeach  
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="mb-0">Rincian Pemesanan</h5>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                <li
-                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                    <div>
-                                        <strong>Total harga</strong>
-                                    </div>
-                                    <span><strong>Rp. {{$total}}</strong></span>
-                                </li>
-                            </ul>
-                            <form action="{{ url('/cart/transaksi') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id_user" value="{{ session('id_user') }}">
-                                <input type="hidden" name="id_produk" value="{{ $c->id }}">
-                                <input type="hidden" name="nama_produk" value="{{ $c->nama_produk }}">
-                                <input type="hidden" name="harga" value="{{$total}}">
-                                <input type="hidden" name="kuantitas" value="1">
-                                <div class="text-center">
-                                    <button type="button" class="btn custom-btn-checkout btn-lg btn-block" onclick="addToTransaksi('{{ session('id_user') }}', '{{ $c->id }}', '{{ $c->user_id }}')">
-                                        Checkout
-                                    </button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

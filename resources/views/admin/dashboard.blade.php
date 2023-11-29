@@ -92,46 +92,14 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item ">
                             <a href="/order" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
                                 <span>Order</span>
                             </a>
-
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
-                                    <a href="/waitingPayment" class="submenu-link"><i
-                                            class="bi bi-wallet-fill fs-5 me-2 "></i>waiting payment</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/packing" class="submenu-link"><i
-                                            class="bi bi-box2-fill fs-5 me-2 "></i>Packing</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/sent" class="submenu-link"><i
-                                            class="bi bi-send-fill fs-5 me-2 "></i>Sent</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/done" class="submenu-link"><i
-                                            class="bi bi-check-square-fill fs-5 me-2 "></i>Done</a>
-
-                                </li>
-                            </ul>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="/chat" class='sidebar-link'>
-                                <i class="bi bi-chat-dots-fill"></i>
-                                <span>Chat</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <ul class="menu">
                         <li class="sidebar-title">ACCOUNT PAGES</li>
@@ -147,12 +115,6 @@
         </div>
 
         <div id="main">
-            <!-- Modal Konfirmasi Logout -->
-            <div id="logoutModal" style="display: none;">
-                        <p>Anda yakin ingin logout?</p>
-                        <button onclick="logout()">Ya</button>
-                        <button onclick="hideLogoutModal()">Tidak</button>
-                    </div>
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -179,10 +141,12 @@
                                     <div class="avatar avatar-lg">
                                         <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
                                     </div>
+                                    @if(!empty(session('user')))
                                     <div class="ms-3 name">
-                                        <h5 class="font-bold fs-6">Fresh Catch</h5>
-                                        <h6 class="text-muted mb-0 text-sm">Freshcatch@gmail.com</h6>
+                                        <h5 class="font-bold fs-6">{{ (session('user')-> nama)}}</h5>
+                                        <h6 class="text-muted mb-0 text-sm">{{ (session('user')-> email)}}</h6>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -269,10 +233,10 @@
                     <div class="col-12 col-lg-7">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Profile Visit</h4>
+                                <h4>Produk</h4>
                             </div>
                             <div class="card-body">
-                                <div><canvas id="myChart"></canvas></div>
+                                <div id="buildingChart"></div>
                             </div>
                         </div>
                     </div>
@@ -282,17 +246,29 @@
                                 <h4>Line Area Chart</h4>
                             </div>
                             <div class="card-body">
-                                <div id="area"></div>
+                                <div id="areaChart"></div>
                             </div>
                         </div>
                     </div>
+                    
                 </section>
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">
-                            Table Product
-                        </h5>
-                    </div>
+                <div class="card-header">
+                            <div class="row justify-content-between">
+                                <div class="col">
+                                    <h5 class="card-title">
+                                        Table Product
+                                    </h5>
+                                </div>
+                                <div class="col text-end">
+                                    <a href="/pdf" target="_blank">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-download"></i>
+                                        </button>
+                                    </a>
+                                </div>    
+                            </div>
+                        </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped" id="table1">
@@ -302,7 +278,6 @@
                                         <th>Product name</th>
                                         <th>Price</th>
                                         <th>Created at</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -350,9 +325,7 @@
                                                 }
                                             ?>
                                         </td>
-                                        <td class="badge d-flex <?php echo (empty($row->in_stock) ? 'bg-danger text-white' : 'bg-success'); ?> justify-content-center align-items-center text-center mt-3">
-                                            <?php echo (empty($row->in_stock) ? 'Out of Stock' : 'In Stock'); ?>
-                                        </td>
+                                        
                                     </tr>
                                 <?php endforeach; ?>
                             
@@ -376,36 +349,36 @@
 
 
     <script src="assets/compiled/js/app.js"></script>
-    <script src="recouces/js/chart.js"></script>
 
 
 
 
     <!-- Need: Apexcharts -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script src="grapik/buildingChart.js"></script>
+    <script src="grapik/areaChart.js"></script>
 
     <script src="assets/extensions/dayjs/dayjs.min.js"></script>
-    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
     <script src="assets/static/js/pages/dashboard.js"></script>
     <script src="assets/static/js/pages/ui-apexchart.js"></script>
 
     <script>
         function showLogoutModal(event) {
-            // Mencegah tindakan default dari tautan
-            event.preventDefault();
-            // Tampilkan modal konfirmasi
-            $("#logoutModal").show();
+            var confirmation = window.confirm("Anda yakin ingin logout?");
+
+            if (confirmation) {
+                // If 'OK' is clicked, proceed with the logout by allowing the default behavior
+                return true;
+            } else {
+                // If 'Cancel' is clicked, prevent the default behavior (href navigation)
+                event.preventDefault();
+                return false;
+            }
         }
 
-        function hideLogoutModal() {
-            // Sembunyikan modal konfirmasi
-            $("#logoutModal").hide();
-        }
+       
 
-        function logout() {
-            // Redirect ke route logout saat logout
-            window.location.href = "{{ route('logout') }}";
-        }
     </script>
 
     

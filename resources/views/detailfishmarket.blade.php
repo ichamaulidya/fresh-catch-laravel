@@ -46,23 +46,27 @@
                         <a class="nav-link" href="/fishMarket">Fish Market</a>
                     </li>
                 </ul>
-                <a href="/cart" class="bi bi-cart-dash-fill" style="margin-right: 15px;"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                    class="bi bi-cart-dash-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z" />
-                </svg></a>
-                @if(!empty(session('user')))
-                <a href="/logout" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
-                height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                </svg></a>
-                @else    
-                <a href="/login" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
-                height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                </svg></a>
-                @endif
+                <div  style="display: grid; grid-template-columns: repeat(3, auto); gap: 15px;">
+                    <a href="/cart" class="bi bi-cart-dash-fill" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                            <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+                        </svg>
+                    </a>
+
+                    @if(!empty(session('user')))
+                        <a href="/profil" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @else    
+                        <a href="/login" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>
@@ -89,83 +93,38 @@
                     </div>
                     <p class="average-rating">14 ulasan</p>
                 </div>
-                <p class="mb-3 product-price">{{$market -> harga}}</p>
-                <div class="mb-3">
-                    <label for="quantity">Kuantitas:</label>
-                    <div class="d-flex">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-cart me-2" type="button" id="minus-btn">-</button>
-                        </div>
-                        <input type="number" id="quantity" name="quantity" class="form-control quantity-input" value="1"
-                            min="1">
-                        <div class="input-group-append">
-                            <button class="btn btn-cart ms-2" type="button" id="plus-btn">+</button>
-                        </div>
-                    </div>
-                </div>
+
                 <p class="mb-3">{{$market -> deskripsi}}</p>
 
-                <div class="text-left mt-4">
-                    <form action="{{ url('/cart/store') }}" method="POST">
-                        @csrf <!-- Tambahkan token CSRF di sini -->
+                <p class="mb-3 product-price">Rp. {{$market -> harga}}</p>
+
+
+                <div class="mb-3">
+                    <form action="{{ route('checkout') }}" method="POST">
+                        @csrf <!-- Add CSRF token here -->
                         <input type="hidden" name="id_user" value="{{ session('id_user') }}">
                         <input type="hidden" name="id_produk" value="{{ $market->id }}">
                         <input type="hidden" name="nama_produk" value="{{ $market->nama_produk }}">
-                        <input type="hidden" name="harga" value="{{$market->harga }}">
-                        <input type="hidden" name="kuantitas" value="1"> <!-- Default quantity is set to 1 -->
+                        <input type="hidden" name="harga" value="{{ $market->harga }}">
+                        <input type="hidden" name="kuantitas" id="quantityInput" value="1"><!-- Default quantity is set to 1 -->
+                        <label for="quantity">Kuantitas:</label>
+                        <div class="d-flex">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-cart me-2" type="button" id="minus-btn">-</button>
+                            </div>
+                            <input type="number" id="quantity" name="quantity" class="form-control quantity-input" value="1" min="1">
+                            <div class="input-group-append">
+                                <button class="btn btn-cart ms-2" type="button" id="plus-btn">+</button>
+                            </div>
+                        </div>
                         <div class="text-left mt-4">
                             <button class="btn btn-cart" id="buy-now-btn">
                                 <i class="fas fa-shopping-cart" style="font-size: 1rem;"></i> Buy Now
-                            </button>
-                            <button type="submit" class="btn btn-cart" onclick="addToCart('{{ session('id_user') }}', '{{ $market->id }}', '{{ $market->user_id }}')">
-                                <i class="fas fa-cart-plus" style="font-size: 1rem;"></i> Add To Cart
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-    <!--TOKO-->
-
-    <div class="container-sm mt-5">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col" style="max-width: 8rem;">
-                <div class="d-flex justify-content-center">
-                    <img src="image/toko2.png" class="img-fluid p-2" style="width: 100%;" alt="Toko 1">
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="text-start p-2">
-                    <h5 class="card-title mb-1">Ikan Bogor</h5>
-                    <p class="fs-6 text-muted mb-1">Aktif 28 menit yang lalu</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="link/to/store-1" class="btn btn-cart btn-sm">
-                            <i class="fas fa-store-alt me-2"></i> Kunjungi Toko
-                        </a>
-                        <a href="/chat" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-comments me-2"></i> Chat Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="text-start p-3">
-                    <p class="fs-6 mb-2">Penilaian: <span style="color: #19a7ce; text-align: right;">17,9RB</span></p>
-                    <p class="fs-6 mb-2">Persentase Chat Dibalas: <span
-                            style="color: #19a7ce; text-align: right;">93%</span></p>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="text-start p-3">
-                    <p class="fs-6 mb-2">Bergabung: <span style="color: #19a7ce; text-align: right;">3 Tahun Lalu</span>
-                    </p>
-                    <p class="fs-6 mb-2">Produk: <span style="color: #19a7ce; text-align: right;">2674</span></p>
-                </div>
-            </div>
-
         </div>
     </div>
     <!--Rekomendasi produk lainnya-->
@@ -286,109 +245,37 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-$(document).ready(function () {
-        // Get necessary elements
-        var quantityInput = $('#quantity');
-        var minusBtn = $('#minus-btn');
-        var plusBtn = $('#plus-btn');
-        var totalPriceDisplay = $('#total-price');
+    document.addEventListener("DOMContentLoaded", function () {
+        var quantityInput = document.getElementById("quantity");
+        var quantityHiddenInput = document.getElementById("quantityInput");
+        var minusBtn = document.getElementById("minus-btn");
+        var plusBtn = document.getElementById("plus-btn");
 
-        // Get the initial price and quantity
-        var price = parseFloat("{{$market->harga}}");
-        var quantity = parseInt(quantityInput.val());
+        // Set the initial value for hidden input
+        quantityHiddenInput.value = quantityInput.value;
 
-        // Function to update total price
-        function updateTotalPrice() {
-            var total = price * quantity;
-            totalPriceDisplay.text("Total Price: " + total);
+        minusBtn.addEventListener("click", function () {
+            var currentQuantity = parseInt(quantityInput.value);
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+                updateHiddenInput();
+            }
+        });
+
+        plusBtn.addEventListener("click", function () {
+            var currentQuantity = parseInt(quantityInput.value);
+            quantityInput.value = currentQuantity + 1;
+            updateHiddenInput();
+        });
+
+        quantityInput.addEventListener("change", function () {
+            updateHiddenInput();
+        });
+
+        function updateHiddenInput() {
+            quantityHiddenInput.value = quantityInput.value;
         }
-
-        // Initial update
-        updateTotalPrice();
-
-        // Event listener for minus button
-        minusBtn.click(function () {
-            if (quantity > 1) {
-                quantity--;
-                quantityInput.val(quantity);
-                updateTotalPrice();
-            }
-        });
-
-        // Event listener for plus button
-        plusBtn.click(function () {
-            quantity++;
-            quantityInput.val(quantity);
-            updateTotalPrice();
-        });
-
-        // Event listener for manual quantity input change
-        quantityInput.change(function () {
-            quantity = parseInt($(this).val());
-            updateTotalPrice();
-        });
     });
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-            var quantityInput = document.getElementById("quantity");
-            var minusBtn = document.getElementById("minus-btn");
-            var plusBtn = document.getElementById("plus-btn");
-
-            minusBtn.addEventListener("click", function () {
-                var currentQuantity = parseInt(quantityInput.value);
-                if (currentQuantity > 1) {
-                    quantityInput.value = currentQuantity - 1;
-                }
-            });
-
-            plusBtn.addEventListener("click", function () {
-                var currentQuantity = parseInt(quantityInput.value);
-                quantityInput.value = currentQuantity + 1;
-            });
-
-            var addToCartBtn = document.getElementById("add-to-cart-btn");
-
-            addToCartBtn.addEventListener("click", function () {
-                var quantity = parseInt(quantityInput.value);
-                if (quantity > 0) {
-                    addToCart(quantity);
-                } else {
-                    alert("Kuantitas harus lebih dari 0.");
-                }
-            });
-
-            function addToCart(quantity) {
-                // Logika penambahan produk ke keranjang belanja
-                alert("Produk telah ditambahkan ke keranjang: " + quantity + " item.");
-            }
-
-            var buyNowBtn = document.getElementById("buy-now-btn");
-
-            buyNowBtn.addEventListener("click", function () {
-                var quantity = parseInt(quantityInput.value);
-                if (quantity > 0) {
-                    processPurchase(quantity);
-                } else {
-                    alert("Kuantitas harus lebih dari 0.");
-                }
-            });
-
-            function processPurchase(quantity) {
-                // Logika proses pembelian langsung
-                alert("Anda telah membeli: " + quantity + " item.");
-            }
-        });
-
-        // JavaScript untuk mengubah latar belakang navbar saat di-scroll
-        window.addEventListener("scroll", function () {
-            var navbar = document.querySelector(".navbar");
-            if (window.scrollY > 100) {
-                navbar.classList.add("navbar-white");
-            } else {
-                navbar.classList.remove("navbar-white");
-            }
-        });
     </script>
 </body>
 

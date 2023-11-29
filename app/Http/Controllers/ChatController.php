@@ -13,20 +13,16 @@ class ChatController extends Controller
     
     public function chat(){
 
-        
-
-        if(session('user')->role == 'admin'){
+        if(session('user')->role == '1'){
             $data = Chat::all();
         } else {
             $data = Chat::where('chat_room_id', session('user')->_id)->get();
             
         }      
 
-
-
         $data_pengirim = $data->unique('pengirim')->pluck('pengirim');
 
-        if(session('user')->role == 'user' && $data_pengirim->count() == 0){
+        if(session('user')->role == '2' && $data_pengirim->count() == 0){
             $crid = session('user')->_id;    
         }
 
@@ -34,9 +30,9 @@ class ChatController extends Controller
             $user = Login::find( $value );
             $data_pengirim[$value] = $user->nama;
 
-            if ($user->role == 'user') {
+            if ($user->role == '2') {
                 $crid = $user->id;
-            }
+            } 
         };
 
 

@@ -81,7 +81,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item  ">
                             <a href="/product" class='sidebar-link'>
                                 <i class="bi bi-bag-dash-fill"></i>
                                 <span>Product</span>
@@ -102,34 +102,23 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item active">
                             <a href="/order" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
                                 <span>Order</span>
                             </a>
-
-                            <ul class="submenu ">
-                                <li class="submenu-item">
-                                    <a href="/waitingPayment" class="submenu-link"><i
-                                            class="bi bi-wallet-fill fs-5 me-2 "></i>waiting payment</a>
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/packing" class="submenu-link"><i
-                                            class="bi bi-box2-fill fs-5 me-2 "></i>Packing</a>
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/sent" class="submenu-link"><i
-                                            class="bi bi-send-fill fs-5 me-2 "></i>Sent</a>
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/done" class="submenu-link"><i
-                                            class="bi bi-check-square-fill fs-5 me-2 "></i>Done</a>
-                                </li>
-                            </ul>
                         </li>
+
+                    </ul>
+                    <ul class="menu">
+                        <li class="sidebar-title">ACCOUNT PAGES</li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('logout') }}" class='sidebar-link' onclick="showLogoutModal(event)">
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -156,87 +145,6 @@
                 </div>
             </div>
             <section class="row">
-                <div class="col-12 col-lg-9">
-                    <div class="row">
-                        <div class="col-6 col-lg-3 col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card">
-                                    <div class="card-body px-4 py-4-5 d-flex align-items-center">
-                                        <div
-                                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center">
-                                            <div class="stats-icon mb-2 text-center" style="background-color: #4FD1C5;">
-                                                <i class="bi bi-credit-card-2-back d-flex align-items-center justify-content-center"
-                                                    style="height: 100%; background-color: #4FD1C5;"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Waiting Payment</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- Repeat the above structure for other cards -->
-                        <div class="col-6 col-lg-3 col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card">
-                                    <div class="card-body px-4 py-4-5 d-flex align-items-center">
-                                        <div
-                                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center">
-                                            <div class="stats-icon mb-2 text-center" style="background-color: #4FD1C5;">
-                                                <i class="bi bi-box2-fill d-flex align-items-center justify-content-center"
-                                                    style="height: 100%; background-color: #4FD1C5;"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Packing</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-6 col-lg-3 col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card">
-                                    <div class="card-body px-4 py-4-5 d-flex align-items-center">
-                                        <div
-                                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center">
-                                            <div class="stats-icon mb-2 text-center" style="background-color: #4FD1C5;">
-                                                <i class="bi bi-send-fill d-flex align-items-center justify-content-center"
-                                                    style="height: 100%; background-color: #4FD1C5;"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Sent</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-6 col-lg-3 col-md-6">
-                            <a href="#" class="card-link">
-                                <div class="card">
-                                    <div class="card-body px-4 py-4-5 d-flex align-items-center">
-                                        <div
-                                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center">
-                                            <div class="stats-icon mb-2 text-center" style="background-color: #4FD1C5;">
-                                                <i class="bi bi-check-square-fill d-flex align-items-center justify-content-center"
-                                                    style="height: 100%; background-color: #4FD1C5;"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Done</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-12 col-lg-3">
                     <div class="card">
                         <div class="card-body py-4 px-4">
@@ -244,151 +152,14 @@
                                 <div class="avatar avatar-xl">
                                     <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
                                 </div>
-                                <div class="ms-3">
-                                    <h5 class="font-bold">Fresh Catch</h5>
-                                    <h6 class="text-muted mb-0" style="font-size: 14px;">Freshcatch@gmail.com</h6>
+                                @if(!empty(session('user')))
+                                <div class="ms-3 name">
+                                    <h5 class="font-bold fs-6">{{ (session('user')-> nama)}}</h5>
+                                    <h6 class="text-muted mb-0 text-sm">{{ (session('user')-> email)}}</h6>
                                 </div>
+                                @endif
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section class="row">
-                <div class="col-12 col-lg-7">
-                    <div class="page-content">
-                        <section class="section">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">
-                                        Table Waiting Payment
-                                    </h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <table class="table table-striped" id="table1">
-                                                <thead>
-                                                    <tr>
-                                                        <th>In Order</th>
-                                                        <th>Name</th>
-                                                        <th>Total Sales</th>
-                                                        <th>Created At</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Msv936</td>
-                                                        <td>udin</td>
-                                                        <td>Rp. 60.000</td>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Msv936</td>
-                                                        <td>udin</td>
-                                                        <td>Rp. 60.000</td>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Msv936</td>
-                                                        <td>udin</td>
-                                                        <td>Rp. 60.000</td>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Msv936</td>
-                                                        <td>udin</td>
-                                                        <td>Rp. 60.000</td>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Msv936</td>
-                                                        <td>udin</td>
-                                                        <td>Rp. 60.000</td>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-5">
-                    <div class="card">
-                        <div class="page-content">
-                            <section class="section">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title">
-                                            Invoice Table
-                                        </h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped" id="invoiceTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Created At</th>
-                                                        <th>In Order</th>
-                                                        <th>Total Sales</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2023-11-10 08:30:00</td>
-                                                        <td>Msv936</td>
-                                                        <td>Rp. 60.000</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -396,263 +167,78 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">
-                                Transaction Table
-                            </h5>
+                            <div class="row justify-content-between">
+                                <div class="col">
+                                    <h5 class="card-title">
+                                        Transaction Table
+                                    </h5>
+                                </div>
+                                <div class="col text-end">
+                                    <a href="/pdf" target="_blank">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-download"></i>
+                                        </button>
+                                    </a>
+                                </div>    
+                            </div>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>In Order</th>
+                                        <th>Id Order</th>
                                         <th>Name</th>
-                                        <th>Address</th>
+                                        <th>Quantitiy</th>
                                         <th>Total Sales</th>
                                         <th>Create At</th>
-                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-dark">Packing</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-success">Done</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-light-dark">Sent</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-success">Done</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-light-dark">Sent</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Msv936</td>
-                                        <td>udin</td>
-                                        <td>Bogor baru</td>
-                                        <td>Rp. 60.000</td>
-                                        <td>2023-11-10 08:30:00</td>
-                                        <td>
-                                            <span class="badge bg-warning">Waiting Payment</span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#editModal"><i class="bi bi-pencil-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#deleteModal"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $cUrl = curl_init();
+                            
+                                    $options = array(
+                                        CURLOPT_URL => 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getWaitingAll',
+                                        CURLOPT_CUSTOMREQUEST => 'GET',
+                                        CURLOPT_RETURNTRANSFER => TRUE
+                                    );
+                            
+                                    curl_setopt_array($cUrl, $options);
+                            
+                                    $response = curl_exec($cUrl);
+                            
+                                    $data = json_decode($response);
+                            
+                                    curl_close($cUrl);
+                            
+                                    foreach ($data as $row) :
+                                        ?>
+                                        
+                                        <tr>
+                                            <td><?= (empty($row->_id) ? '' : $row->_id) ?></td>
+                                            <td><?= (empty($row->nama_produk) ? '' : $row->nama_produk) ?></td>
+                                            <td><?= (empty($row->kuantitas) ? '' : '' . $row->kuantitas) ?></td>
+                                            <td><?= (empty($row->harga) ? '' : 'Rp. ' . $row->harga) ?></td>
+                                            <td><?= (empty($row->created_at) ? '' : '' . $row->created_at) ?></td>
+                                            <td>
+                                                <form action="<?= route('deleteOrder', ['id' => $row->_id]) ?>" method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="<?= csrf_token() ?>">
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal" onclick="return confirm('Apakah anda yakin akan menghapus data?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                        <?php endforeach;
+
+                                        if (empty($data)) {
+                                            echo '<tr><td colspan="5" class="text-center">Tidak ada data</td></tr>';
+                                        }
+                                        ?>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <!-- Edit Modal -->
-                    <div class="modal" id="editModal">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Edit Product</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="productName" class="form-label">Product Name:</label>
-                                                <input type="text" class="form-control" id="productName"
-                                                    name="productName" required>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="IdOrder" class="form-label">Id Order:</label>
-                                                <input type="number" class="form-control" id="IdOrder" name="IdOrder"
-                                                    required>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="TotalSales" class="form-label">Total Sales:</label>
-                                                <input type="number" class="form-control" id="Totalsales"
-                                                    name="TotalSales" required>
-                                            </div>
-
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Update</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Delete Modal -->
-                    <div class="modal" id="deleteModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete Product</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <p>Are you sure you want to delete this product?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -671,6 +257,21 @@
 
 
     <script src="assets/compiled/js/app.js"></script>
+
+    <script>
+        function showLogoutModal(event) {
+            var confirmation = window.confirm("Anda yakin ingin logout?");
+
+            if (confirmation) {
+                // If 'OK' is clicked, proceed with the logout by allowing the default behavior
+                return true;
+            } else {
+                // If 'Cancel' is clicked, prevent the default behavior (href navigation)
+                event.preventDefault();
+                return false;
+            }
+        }
+     </script>
 
 
 

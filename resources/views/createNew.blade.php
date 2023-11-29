@@ -30,28 +30,28 @@
               <form action="/save" method="post" id="signup-form">
                 @csrf
                 <div class="form-outline mb-4" >
-                  <input type="text" id="nama" name="nama" placeholder="Username" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example1m">Nama</label>
+                  <input type="text" id="nama" name="nama" placeholder="Username" class="form-control form-control-lg" required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="alamat" name="alamat" placeholder="Alamat" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example99">Alamat</label>
+                  <input type="text" id="alamat" name="alamat" placeholder="Alamat" class="form-control form-control-lg" required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="email" name="email" placeholder="Email" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example8">Email</label>
+                  <input type="text" id="email" name="email" placeholder="Email" class="form-control form-control-lg" required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="number" id="notlp" name="notlp" placeholder="Nomor Telepon" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example90">Nomor Telepon</label>
+                  <input type="number" id="notlp" name="notlp" placeholder="Nomor Telepon" class="form-control form-control-lg" required/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg" required/>
                   <label class="form-label" for="form3Example97">Password</label>
+                  <input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg" required/>
                 </div>
 
                 <div class="d-flex justify-content-end pt-3">

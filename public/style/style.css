@@ -145,3 +145,59 @@
 .social-icon-link:hover {
     color: #33bbc5; /* Warna yang berbeda saat dihover */
 }
+
+.carousel-item img {
+    filter: blur(1px); /* Adjust the blur intensity as needed */
+}
+
+/* Optionally, you can add a transition effect for a smoother appearance */
+.carousel-item img:hover {
+    filter: blur(0);
+    transition: filter 0.5s ease;
+}
+
+#modal-container {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+#modal-header {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+}
+
+#modal-content {
+    padding: 20px;
+}
+
+#modal-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+}
+
+#open-modal-btn {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: transparent;
+    color: #fff; 
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+

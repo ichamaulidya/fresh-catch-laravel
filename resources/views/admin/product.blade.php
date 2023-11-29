@@ -103,46 +103,15 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  ">
                             <a href="/order" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
                                 <span>Order</span>
                             </a>
 
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
-                                    <a href="/waitingPayment" class="submenu-link"><i
-                                            class="bi bi-wallet-fill fs-5 me-2 "></i>waiting payment</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/packing" class="submenu-link"><i
-                                            class="bi bi-box2-fill fs-5 me-2 "></i>Packing</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/sent" class="submenu-link"><i
-                                            class="bi bi-send-fill fs-5 me-2 "></i>Sent</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/done" class="submenu-link"><i
-                                            class="bi bi-check-square-fill fs-5 me-2 "></i>Done</a>
-
-                                </li>
-                            </ul>
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="/chat" class='sidebar-link'>
-                                <i class="bi bi-chat-dots-fill"></i>
-                                <span>Chat</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <ul class="menu">
                         <li class="sidebar-title">ACCOUNT PAGES</li>
@@ -360,7 +329,7 @@
                                         @csrf
                                             <div class="mb-3">
                                                 <label for="nama_produk" class="form-label">Product Name:</label>
-                                                <input type="text" class="form-control" id="nama_produk"
+                                                <input type="text" class="form-control" id="name_produk"
                                                     name="nama_produk" required>
                                                 <input type="hidden" id="id" name="id">
                                             </div>
@@ -386,8 +355,9 @@
 
                                             <div class="mb-3">
                                                 <label for="gambar" class="form-label">Upload Image:</label>
-                                                <input type="file" class="form-control" id="gambar_produk"
-                                                    name="gambar">
+                                                <img id="currentImage" src="" alt="Current Image" style="max-width: 100%; height: auto;" />
+                                                <input type="file" class="form-control" name="gambar">
+                                                <input type="hidden" name="gambarlama" id="gambarlama">
                                             </div>
                                         </div>
                                     <div class="modal-footer">
@@ -423,6 +393,21 @@
     <script src="assets/static/js/pages/simple-datatables.js"></script>
 
     <script>
+        function showLogoutModal(event) {
+            var confirmation = window.confirm("Anda yakin ingin logout?");
+
+            if (confirmation) {
+                // If 'OK' is clicked, proceed with the logout by allowing the default behavior
+                return true;
+            } else {
+                // If 'Cancel' is clicked, prevent the default behavior (href navigation)
+                event.preventDefault();
+                return false;
+            }
+        }
+
+
+
         $(document).ready(function() {
             $('.edit').click(function() {
                 var id = $(this).data('id');
@@ -438,11 +423,13 @@
                         $('#modalProduct').modal('show');
                             
                         $('#id').val(data._id);
-                        $('#nama_produk').val(data.nama_produk);
+                        $('#name_produk').val(data.nama_produk);
                         $('#harga_produk').val(data.harga);
                         $('#deskripsi_produk').val(data.deskripsi);
                         $('#dibuat_produk').val(data.dibuat);
-                        $('#gambar_produk').val(data.gambar);
+                        $('#currentImage').attr('src', "{{ asset('assets/img/produk') }}/"+data.gambar); // Set the source of the image
+                        $('#gambarlama').val(data.gambar); // Set the value of the hidden input
+
                     },
                     error: function(err) {
                         console.log(err);

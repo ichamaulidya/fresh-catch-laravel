@@ -94,46 +94,16 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  ">
                             <a href="/order" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
                                 <span>Order</span>
                             </a>
 
-                            <ul class="submenu ">
-
-                                <li class="submenu-item  ">
-                                    <a href="/waitingPayment" class="submenu-link"><i
-                                            class="bi bi-wallet-fill fs-5 me-2 "></i>waiting payment</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/packing" class="submenu-link"><i
-                                            class="bi bi-box2-fill fs-5 me-2 "></i>Packing</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/sent" class="submenu-link"><i
-                                            class="bi bi-send-fill fs-5 me-2 "></i>Sent</a>
-
-                                </li>
-
-                                <li class="submenu-item  ">
-                                    <a href="/done" class="submenu-link"><i
-                                            class="bi bi-check-square-fill fs-5 me-2 "></i>Done</a>
-
-                                </li>
-                            </ul>
+                            
                         </li>
 
-                        <li class="sidebar-item  ">
-                            <a href="/chat" class='sidebar-link'>
-                                <i class="bi bi-chat-dots-fill"></i>
-                                <span>Chat</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <ul class="menu">
                         <li class="sidebar-title">ACCOUNT PAGES</li>
@@ -204,7 +174,7 @@
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="ownerName" class="form-label">Owner
+                                                                    <label for="ownerName" class="form-label">
                                                                         Addres:</label>
                                                                     <input type="text" class="form-control"
                                                                         id="alamat" name="alamat" required>
@@ -357,8 +327,8 @@
                                             echo '<td>' . (empty($row->longtitude) ? '' : $row->longtitude) . '</td>';
 
                                             echo '<td>
-                                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm edit" data-id="'.$row->_id.'"><i class="bi bi-pencil-square"></i></a>
-                                                    </td>
+                                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm edit" data-id="'.$row->_id.'"><i class="bi bi-pencil-square"></i></a>
+                                                </td>
                                                     <td>
                                                     <form action="'.route('deleteFishfarm', ['id' => $row->_id]).'" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
@@ -379,88 +349,74 @@
                     </div>
 
                         <!-- Edit Modal -->
-                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="exampleModalLabel">Edit Fish Info</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="formArtikel" action="{{ route('admin.updateFishFarm') }}" method="post" enctype="multipart/form-data">
-                                        @method('PUT')
-                                        @csrf
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="fishFarmName" class="form-label">Fish Farm Name:</label>
-                                                        <input type="text" class="form-control" id="fishFarmName" name="fishFarmName" required>
+                        <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="exampleModalLabel">Edit Product</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="formPembudidaya" action="{{ route('admin.updateFishFarm') }}" method="post" enctype="multipart/form-data">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="fishFarmName" class="form-label">Fish Farm Name:</label>
+                                                            <input type="text" class="form-control" id="name" name="nama" required>
+                                                            <input type="hidden" id="id" name="id">
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="ownerName" class="form-label">Address:</label>
+                                                            <input type="text" class="form-control" id="address" name="alamat" required>
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="phoneNumber" class="form-label">Phone Number:</label>
+                                                            <input type="tel" class="form-control" id="telp" name="kontak" required>
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="email" class="form-label">Link Maps:</label>
+                                                            <input type="text" class="form-control" id="maps" name="link" required>
+                                                        </div>
                                                     </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="ownerName" class="form-label">Owner Name:</label>
-                                                        <input type="text" class="form-control" id="ownerName" name="ownerName" required>
+                                        
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="gpsLatitude" class="form-label">GPS Latitude:</label>
+                                                            <input type="text" class="form-control" id="gpslatitude" name="latitude" required>
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="gpsLongitude" class="form-label">GPS Longitude:</label>
+                                                            <input type="text" class="form-control" id="longitude" name="longtitude" required>
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="address" class="form-label">Description:</label>
+                                                            <textarea class="form-control" id="deskrip" name="deskripsi" rows="3" required></textarea>
+                                                        </div>
+                                        
+                                                        <div class="mb-3">
+                                                            <label for="farmImage" class="form-label">Upload Image:</label>
+                                                            <img id="currentImage" src="" alt="Current Image" style="max-width: 100%; height: auto;" />
+                                                            <input type="file" class="form-control" name="gambar">
+                                                            <input type="hidden" name="gambarlama" id="gambarlama">
+                                                        </div>
                                                     </div>
-                            
-                            
-                                                    <div class="mb-3">
-                                                        <label for="phoneNumber" class="form-label">Phone
-                                                            Number:</label>
-                                                        <input type="tel" class="form-control" id="phoneNumber"
-                                                            name="phoneNumber" required>
-                                                    </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="email" class="form-label">Email:</label>
-                                                        <input type="email" class="form-control" id="email" name="email"
-                                                            required>
-                                                    </div>
-                                                </div>
-                            
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="gpsLatitude" class="form-label">GPS Latitude or
-                                                            Google Maps Link:</label>
-                                                        <input type="text" class="form-control" id="gpsLatitude"
-                                                            name="gpsLatitude" required>
-                                                    </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="gpsLongitude" class="form-label">GPS
-                                                            Longitude:</label>
-                                                        <input type="text" class="form-control" id="gpsLongitude"
-                                                            name="gpsLongitude" required>
-                                                    </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="operationTime" class="form-label">Operation
-                                                            Time:</label>
-                                                        <input type="text" class="form-control" id="operationTime"
-                                                            name="operationTime" required>
-                                                    </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="address" class="form-label">Address:</label>
-                                                        <textarea class="form-control" id="address" name="address"
-                                                            rows="3" required></textarea>
-                                                    </div>
-                            
-                                                    <div class="mb-3">
-                                                        <label for="farmImage" class="form-label">Upload
-                                                            Image:</label>
-                                                        <input type="file" class="form-control" id="farmImage"
-                                                            name="farmImage">
-                                                    </div>
-                            
                                                 </div>
                                             </div>
+                                        </form>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary"  form="formPembudidaya">Update</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                         </div>
-                                    </form>
+                                    </div>   
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary"  form="formArtikel">Update</button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -512,53 +468,51 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-        
+        function showLogoutModal(event) {
+            var confirmation = window.confirm("Anda yakin ingin logout?");
+
+            if (confirmation) {
+                // If 'OK' is clicked, proceed with the logout by allowing the default behavior
+                return true;
+            } else {
+                // If 'Cancel' is clicked, prevent the default behavior (href navigation)
+                event.preventDefault();
+                return false;
+            }
+        }
 
         $(document).ready(function () {
-            $('.edit').click(function () {
-                var id = $(this).data('id');
+        $('.edit').click(function () {
+            var id = $(this).data('id');
+
+            // Set the user ID in the hidden input field
+            $('#id').val(id);
+
                 
-                console.log(id);
                 $.ajax({
                     url: 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getFishFarmById?id=' + id,
                     type: 'GET',
-                    success: function (res) {
-                        var data = res[0];
-                        $('#editModal').modal('show');
-                        $('#fishFarmName').val(data.nama);
-                        $('#ownerName').val(data.pemilik);
-                        $('#phoneNumber').val(data.kontak);
-                        $('#email').val(data.link);
-                        $('#gpsLatitude').val(data.latitude);
-                        $('#gpsLongitude').val(data.longtitude);
-                        $('#operationTime').val(data.jam_operasi);
+                    success: function(res) {
+                        var data = res[0]; // Use 'res' instead of 'data'
+                        $('#modalProduct').modal('show');
+
+                        $('#name').val(data.nama);
                         $('#address').val(data.alamat);
+                        $('#telp').val(data.kontak);
+                        $('#maps').val(data.link);
+                        $('#gpslatitude').val(data.latitude);
+                        $('#longitude').val(data.longtitude);
+                        $('#deskrip').val(data.deskripsi);
+                        $('#currentImage').attr('src', "{{ asset('assets/img/fishfarm') }}/"+data.gambar); // Set the source of the image
+                        $('#gambarlama').val(data.gambar); // Set the value of the hidden input
 
-
-                        // Assuming #editor1 is the ID of the textarea for the CKEditor
-                        ClassicEditor.create(document.querySelector('#editor1')).then(editor => {
-                            editor.setData(data.description);
-                        }).catch(error => {
-                            console.error(error);
-                        });
-                        // Add other data to your form as needed
                     },
-                    error: function (err) {
+                    error: function(err) {
                         console.log(err);
                     }
                 });
             });
 
-            // Tombol Cancel
-            $('#cancelButton').click(function() {
-            
-            // Tutup modal edit  
-            $('#editModal').modal('hide');
-
-            // Bersihkan form input jika perlu
-            $('#name').val(''); 
-            $('#description').val('');      
-            });
         });
 
     </script>

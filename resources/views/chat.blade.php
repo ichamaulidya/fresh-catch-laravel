@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="image/logo romusha.png" type="image/x-icon">
+    <link rel="shortcut icon" href="image/logokecil.png" type="image/x-icon">
     <title>chat</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,16 +11,61 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style/chat.css">
     <link rel="stylesheet" href="style/style.css">
- 
+
 </head>
 <body>
-<section style="background-color: #eee;">
-<div class="container py-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light stiky-top">
+        <div class="container-md">
+            <a class="navbar-brand" href="#">
+                <img src="image/logo romusha.png" width="auto" height="40" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fish farm">Fish Farm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fishInfo">Fish Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fishMarket">Fish Market</a>
+                    </li>
+                </ul>
+                <a href="/cart" class="bi bi-cart-dash-fill" style="margin-right: 15px;"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-cart-dash-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z" />
+                    </svg></a>
+                    @if(!empty(session('user')))
+                    <a href="/profil" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                    height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                    </svg></a>
+                    @else    
+                    <a href="/login" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                    height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                    </svg></a>
+                    @endif
+                        
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-4">
+            <div class="col-md-12 col-lg-12 col-xl-10">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3"
-                        style="border-top: 4px solid #ffa900;">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 text-white"
+                        style="border-top: 4px solid #33bbc5; background-color :#33bbc5">
                         <h5 class="mb-0">Chat messages</h5>
                         <div class="d-flex flex-row align-items-center">
                             <i class="fas fa-times text-muted fa-xs"></i>
@@ -59,20 +104,22 @@
                         @endforeach
                     </div>
                     <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
-                        <form action="/postchat" method='post' class="d-flex">
+                        <form action="{{ url('/postchat') }}" method="post" class="d-flex flex-grow-1">
                             @csrf
-                            <input type="text" name='pesan' class="form-control col-10 mr-2"
+                            <input type="text" name="pesan" class="form-control mr-2 flex-grow-1"
                                 placeholder="Type message" aria-label="Recipient's username"
                                 aria-describedby="button-addon2" />
-                            <input type="hidden" name='crid' value="{{$crid}}" class="form-control" />
-                            <button class="btn btn-warning" type="submit" id="button-addon2"
-                                style="padding-top: .55rem;">Kirim</button>
+                            <input type="hidden" name="crid" value="{{ $crid }}" class="form-control" />
+                            <button class="btn btn-warning" type="submit" id="button-addon2">Kirim</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </div> 
+
+
+    
+       
 </body>
 </html>

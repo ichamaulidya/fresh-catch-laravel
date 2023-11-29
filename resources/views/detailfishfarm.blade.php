@@ -40,72 +40,68 @@
                         <a class="nav-link" href="/fishMarket">Fish Market</a>
                     </li>
                 </ul>
-                <a href="cart.html" class="bi bi-cart-dash-fill" style="margin-right: 15px;"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-cart-dash-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z" />
-                    </svg></a>
-                <a href="login.html" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
-                        height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                    </svg></a>
+                <div  style="display: grid; grid-template-columns: repeat(3, auto); gap: 15px;">
+                    <a href="/cart" class="bi bi-cart-dash-fill" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                            <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+                        </svg>
+                    </a>
+
+                    @if(!empty(session('user')))
+                        <a href="/profil" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @else    
+                        <a href="/login" class="bi bi-person-fill">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                            </svg>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>
 
     <!--Main layout-->
     <div class="container-sm" style="margin-top: 8rem;">
-        <div class="card mx-auto" style="width: 80rem;">
+        <div class="card mx-auto">
             <div class="card-body">
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-6">
                             <!-- Gambar tempat -->
-                            <img src="image/{{$farm->gambar}}" class="img-fluid" alt="Tempat">
+                            <img src="{{ asset('assets/img/fishfarm/' . $farm->gambar) }}" class="img-fluid" alt="Tempat">
                         </div>
                         <div class="col-lg-6">
                             <!-- Informasi tempat -->
                             <h2>{{$farm->nama}}</h2>
-                            <div class="d-flex align-items-center mb-3">
+                            <div class="mb-3">
                                 <i class="fas fa-map-marker-alt mr-2"></i>
-                                <span style="margin-left: 10px;">{{$farm->alamat}}</span>
+                                <span>{{$farm->alamat}}</span>
                             </div>
-                            <div class="d-flex align-items-center mb-3">
+                            <div class="mb-3">
                                 <i class="fas fa-phone-alt mr-2"></i>
-                                <span style="margin-left: 10px;">Nomor Telepon: {{$farm->kontak}}</span>
+                                <span>Nomor Telepon: {{$farm->kontak}}</span>
                             </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fas fa-globe mr-2"></i>
-                                <a class="text-reset fw-bold" href="https://freshcatch.com/"
-                                    style="margin-left: 10px;">www.freshcatch.com</a>
-                            </div>
-                            <div class="d-flex align-items-center">
+                            <div>
                                 <i class="fas fa-star mr-2"></i>
-                                <span style="margin-left: 10px;">Rating: 4.5</span>
+                                <span>Rating: 4.5</span>
                             </div>
-
-                            <!-- Fitur Simpan, Bagikan, dan Rute -->
-                            <div class="mt-4">
-                                <button class="btn btn-custom">
-                                    <i class="fas fa-share-alt mr-2"></i> Bagikan
-                                </button>
-                            
-                                <button class="btn btn-custom">
-                                    <i class="fas fa-map-marked-alt mr-2"></i> Rute
-                                </button>
-                            </div>                            
+                            <div class="mt-3">
+                                <a href="{{$farm->link}}" class="btn btn-custom">
+                                    <i class="fas fa-map-marked-alt mr-2"></i> Route
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-    <!-- footer-->
+        <!-- footer-->
     <div class="container-sm">
         <footer class="text-center text-lg-start bg-white text-muted mt-5">
             <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">

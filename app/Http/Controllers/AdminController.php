@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Fishinfo;
 use App\Models\Fishmarket;
 use App\Models\Fishfarm;
+use App\Models\Chat;
+use App\Models\Login;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -74,16 +76,23 @@ class AdminController extends Controller
         $id = $request->input('id');
         $judul = $request->input('judul');
         $tgl_publikasi = $request->input('tgl_publikasi');
-        $gambar = $request->file('gambar'); // Menggunakan request file untuk mengelola pengunggahan gambar
         $deskripsi = $request->input('deskripsi');
+        $gambarlama = $request->input('gambarlama');
+        
+        // Menggunakan request untuk mengelola pengunggahan gambar
+        $gambar = $request->file('gambar');
 
         // Validasi file
         if ($gambar && $gambar->isValid()) {
-            // Simpan gambar ke direktori yang diinginkan (misalnya, public/assets/img/fishinfo)
+            // Mendapatkan nama unik untuk gambar
             $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
+
+            // Pindahkan gambar ke folder tujuan (misalnya, public/images)
             $gambar->move(public_path('assets/img/artikel'), $namaGambar);
         } else {
-            return 'Error: Gambar tidak diunggah atau tidak valid.';
+            $namaGambar = $gambarlama;
+            // Tangani kesalahan, file tidak diunggah atau tidak valid
+            // return 'Error: Gambar tidak diunggah atau tidak valid.';
         }
 
         // Update operation
@@ -172,7 +181,7 @@ class AdminController extends Controller
                 return $errorMessage; // Gantilah 'error' dengan nama view yang sesuai
             } else {
                 // Redirect ke halaman login atau halaman lain yang sesuai
-                return redirect('/admin.fishinfo');
+                return redirect()->route('admin.fishfarm');
                 // Gantilah 'login' dengan nama rute yang sesuai
             }
         } else {
@@ -181,54 +190,50 @@ class AdminController extends Controller
         }
     }
 
-            
-        public function updateFishFarm(Request $request)
-        {
-            $id = $request->input('id');
-            $nama = $request->input('nama');
-            $alamat = $request->input('alamat');
-            $deskripsi = $request->input('deskripsi');
-            $latitude = $request->input('latitude');
-            $longtitude = $request->input('longtitude');
-            $kontak = $request->input('kontak');
-            $link = $request->input('link');
+    public function updateFishfarm(Request $request)
+    {
+        $id = $request->input('id');
+        $nama = $request->input('nama');
+        $alamat = $request->input('alamat');
+        $deskripsi = $request->input('deskripsi');
+        $latitude = $request->input('latitude');
+        $longtitude = $request->input('longtitude'); 
+        $kontak = $request->input('kontak');
+        $link = $request->input('link');
+        $gambarlama = $request->input('gambarlama');
+        
+        // Menggunakan request untuk mengelola pengunggahan gambar
+        $gambar = $request->file('gambar');
 
-            // Check if a new image is provided
-            if ($request->hasFile('gambar')) {
-                $gambar = $request->file('gambar');
+        // Validasi file
+        if ($gambar && $gambar->isValid()) {
+            // Mendapatkan nama unik untuk gambar
+            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
 
-                // Validate image type
-                $allowedExtensions = ['jpeg', 'jpg', 'png'];
-                if (!in_array(strtolower($gambar->getClientOriginalExtension()), $allowedExtensions)) {
-                    return 'Error: Tipe gambar tidak valid. Gunakan jpeg, jpg, atau png.';
-                }
-
-                // Validate and save the new image to the specified directory
-                if ($gambar->isValid()) {
-                    $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
-                    $gambar->move(public_path('assets/img/fishfarm'), $namaGambar);
-
-                    // Include the new image in the update operation
-                    $response = Http::withOptions(['verify' => false])->put("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/updatePembudidaya?id=$id&nama=$nama&alamat=$alamat&deskripsi=$deskripsi&gambar=$namaGambar&latitude=$latitude&longtitude=$longtitude&kontak=$kontak&link=$link");
-                } else {
-                    return 'Error: Gambar tidak valid.';
-                }
-            } else {
-                // If no new image is provided, exclude 'gambar' from the update operation
-                $response = Http::withOptions(['verify' => false])->put("https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/updatePembudidaya?id=$id&nama=$nama&alamat=$alamat&deskripsi=$deskripsi&latitude=$latitude&longtitude=$longtitude&kontak=$kontak&link=$link");
-            }
-
-            Log::info("Update Response: " . $response->body());
-
-            if ($response->failed()) {
-                // Handle error
-                $errorMessage = $response->body();
-                return $errorMessage; // Change this to handle the error as needed
-            } else {
-                // Redirect to the fishinfo page
-                return redirect()->route('admin.fishfarm');
-            }
+            // Pindahkan gambar ke folder tujuan (misalnya, public/images)
+            $gambar->move(public_path('assets/img/fishfarm'), $namaGambar);
+        } else {
+            $namaGambar = $gambarlama;
+            // Tangani kesalahan, file tidak diunggah atau tidak valid
+            // return 'Error: Gambar tidak diunggah atau tidak valid.';
         }
+
+        // Update operation
+        $response = Http::put('https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/updatePembudidaya?id=' . urlencode($id) . '&nama=' . urlencode($nama) . '&alamat=' . urlencode($alamat) . '&deskripsi=' . urlencode($deskripsi) . '&latitude=' . urlencode($latitude) . '&longtitude=' . urlencode($longtitude) . '&kontak=' . urlencode($kontak) . '&link=' . urlencode($link) . '&gambar=' . urlencode($namaGambar));
+
+        Log::info("Update Response: " . $response->body());
+
+        if ($response->failed()) {
+            // Handle error
+            $errorMessage = $response->body();
+            return $errorMessage; // Sesuaikan ini untuk menangani kesalahan sesuai kebutuhan
+        } else {
+            // Redirect ke halaman produk atau sesuai yang Anda tentukan
+            return redirect()->route('admin.fishfarm');
+        }
+    }
+
+
 
 
     public function deletefishfarm($id)
@@ -292,7 +297,7 @@ class AdminController extends Controller
                 return $errorMessage; // Gantilah 'error' dengan nama view yang sesuai
             } else {
                 // Redirect ke halaman login atau halaman lain yang sesuai
-                return redirect('/admin.fishinfo');
+                return redirect()->route('admin.product');
                 // Gantilah 'login' dengan nama rute yang sesuai
             }
         } else {
@@ -307,15 +312,22 @@ class AdminController extends Controller
         $id = $request->input('id');
         $nama_produk = $request->input('nama_produk');
         $harga = $request->input('harga');
+        $gambarlama = $request->input('gambarlama');
+        
+        // Menggunakan request untuk mengelola pengunggahan gambar
         $gambar = $request->file('gambar');
 
-        // Validasi file 
+        // Validasi file
         if ($gambar && $gambar->isValid()) {
-            // Simpan gambar ke direktori yang diinginkan (misalnya, public/assets/img/produk)
+            // Mendapatkan nama unik untuk gambar
             $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
+
+            // Pindahkan gambar ke folder tujuan (misalnya, public/images)
             $gambar->move(public_path('assets/img/produk'), $namaGambar);
         } else {
-            return 'Error: Gambar tidak diunggah atau tidak valid.';
+            $namaGambar = $gambarlama;
+            // Tangani kesalahan, file tidak diunggah atau tidak valid
+            // return 'Error: Gambar tidak diunggah atau tidak valid.';
         }
         
         $deskripsi = $request->input('deskripsi');
@@ -357,37 +369,36 @@ class AdminController extends Controller
 
 
 
+  
 
 
     public function order()
     {
         return view('admin.order');
     }
-
-    public function waitingPayment()
+      
+    public function deleteOrder($id)
     {
-        return view('admin.waitingPayment');
+        // Make sure to validate and sanitize the $id parameter to avoid security issues
+
+        $response = Http::delete('https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/deleteByOrder?id=' . urlencode($id));
+
+        if ($response->failed()) {
+            // Handle error
+            $errorMessage = $response->body();
+            return response()->json(['status' => 'fail', 'message' => $errorMessage], 500);
+            // Adjust the status code and response format based on your needs
+        } else {
+            // Redirect to a specific route or URL
+            return redirect()->route('admin.order'); // Adjust the route name as needed
+        }
+
     }
 
-    public function packing()
+    public function pdf()
     {
-        return view('admin.packing');
+        return view('admin.pdf');
     }
 
-    public function sent()
-    {
-        return view('admin.sent');
-    }
-
-    public function donet()
-    {
-        return view('admin.done');
-    }
-
-    public function chat()
-    {
-        return view('admin.chat');
-    }
-
-
+    
 }

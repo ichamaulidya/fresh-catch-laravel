@@ -7,7 +7,10 @@
     <link rel="shortcut icon" href="image/logo romusha.png" type="image/x-icon">
     <title>Fresh Catch/ profile</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- Bootstrap Icons CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -38,12 +41,27 @@
             fill: #33bbc5;
             margin-right: 10px;
         }
+        .btn-custom {
+            background-color: #19A7CE;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #33bbc5;
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-md">
+            @if(!empty(session('user')))
             <a class="navbar-brand" href="#">
                 <img src="image/logo romusha.png" width="auto" height="40" alt="">
             </a>
@@ -73,7 +91,6 @@
                         <path
                             d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1z" />
                     </svg></a>
-                    @if(!empty(session('user')))
                     <a href="/logout" class="bi bi-person-fill"><svg xmlns="http://www.w3.org/2000/svg" width="25"
                     height="25" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -91,30 +108,28 @@
 
     <section class="h-100">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-center align-items-center h-100">
             @if(!empty(session('user')))
+            <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="text-white d-flex flex-row"
                     style="background-image: url('image/f6.jpg'); background-size: cover; height: 260px;">
-                    <div class="ms-5 d-flex flex-column" style="width: 150px; margin-top: 3rem;">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                    <div class="ms-5 d-flex flex-column" style="width: 140px; margin-top: 3rem;">
+                        <img src=" assets/img/profil/profile.jpg"
                             alt="Generic placeholder image" class="img-fluid img-thumbnail mb-2"
-                            style="width: 150px; border-radius: 50%; margin-top: 8rem; z-index: 1">
+                            style="width: 140px; border-radius: 50%; margin-top: 8rem; z-index: 1">
                         <h4 class="text-center" data-mdb-ripple-color="dark"
                             style="z-index: 1; cursor: pointer; color: black;">
-                            {{-- <span>{{ auth()->user()->nama }}</span> --}}
-                            {{ (session('user')->nama) }}
+                            {{ session('user')->nama }}
                         </h4>
                     </div>
                 </div>
                 <div class="container card-body p-5 text-black">
-                <div class="mb-5" style="margin-top: 5rem;">
-                    <div class="container border bg-body rounded-4 shadow-sm p-4 mt-4">
-                        <div class="row flex-column">
-                            @if(!empty(session('user')))
-                                <a href="/editprofile/{{(session('user')->id)}}" class="text-decoration-none text-black">
-                                    <div class="col p-3 fs-5 d-flex align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5"
-                                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <div class="mb-5" style="margin-top: 5rem;">
+                        <div class="container border bg-body rounded-4 shadow-sm p-4 mt-4">
+                            <div class="row flex-column">
+                                <a href="#" class="text-decoration-none text-black edit" data-bs-toggle="modal" data-bs-target="#editProfileModal" data-id="{{ session('user')->_id }}">
+                                    <div class="col p-2 fs-5 d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5" class="bi bi-person-circle"
+                                            viewBox="0 0 16 16">
                                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                             <path fill-rule="evenodd"
                                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -122,24 +137,116 @@
                                         <span class="ms-4">Edit Profile</span>
                                     </div>
                                 </a>
-                            @else
-                                <!-- Handle the case where the user is not authenticated -->
-                                <p>Please log in to edit your profile.</p>
-                            @endif
 
-                                <a href="/editaddress" class="text-decoration-none text-black">
-                                    <div class="col  p-3 fs-5 d-flex align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5"
-                                            class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                <!-- Modal -->
+                                <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form for Profile Editing -->
+                                                    <form id="Formeditprofil" action="{{ route('editprofil') }}" method="POST" enctype="multipart/form-data">
+                                                        @method('PUT') <!-- Menambahkan _method dengan nilai PUT -->
+                                                        @csrf 
+                                                        <div class="col p-2 fs-5">
+                                                            <div class="form-group">
+                                                                <label for="email">Email:</label>
+                                                                <input type="email" class="form-control" id="email" name="email" required>
+                                                                <input type="hidden" id="id" name="id"> <!-- Hidden input for user ID -->
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="col p-2 fs-5">
+                                                            <div class="form-group">
+                                                                <label for="nama">Username:</label>
+                                                                <input type="text" class="form-control" id="nama" name="nama" required>
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="col p-2 fs-5">
+                                                            <div class="form-group">
+                                                                <label for="notelp">No Telephone:</label>
+                                                                <input type="tel" class="form-control" id="notelp" name="notelp" required>
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="col p-2 fs-5">
+                                                            <div class="form-group">
+                                                                <label for="password">Password:</label>
+                                                                <input type="password" class="form-control" id="password" name="password" required>
+                                                            </div>
+                                                        </div>
+                                    
+              
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn-custom" form="Formeditprofil">Save Changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="#" class="text-decoration-none text-black alamat" data-bs-toggle="modal" data-bs-target="#editAlamat" data-id="{{ session('user')->_id }}">
+                                    <div class="col p-2 fs-5 d-flex align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                                         </svg>
                                         <span class="ms-4">Change Address</span>
                                     </div>
                                 </a>
 
-                                <a href="#" class="text-decoration-none text-black">
-                                    <div class="col  p-3 fs-5 d-flex align-items-center">
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalAlamat" tabindex="-1" aria-labelledby="changeAddressModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="changeAddressModalLabel">Change Address</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="formAlamat" action="{{ route('editalamat') }}" method="post" enctype="multipart/form-data">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <div class="col p-2 fs-5">
+                                                        <div class="form-group">
+                                                            <label for="nama">Name:</label>
+                                                            <input type="text" class="form-control" id="username" name="nama" required>
+                                                            <input type="hidden" id="id" name="id">
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="col p-2 fs-5">
+                                                        <div class="form-group">
+                                                            <label for="phone">No Telephone:</label>
+                                                            <input type="tel" class="form-control" id="notlp" name="notelp" required>
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="col p-2 fs-5">
+                                                        <div class="form-group">
+                                                            <label for="alamat">Address:</label>
+                                                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn-custom" form="formAlamat">Save Changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <a href="/logout" class="text-decoration-none text-black">
+                                    <div class="col  p-2 fs-5 d-flex align-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#33bbc5"
                                             class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
@@ -155,14 +262,18 @@
                         @endif
                     </div>
                 </div>
-
-
             </div>
         </div>
         </div>
     </section>
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
     <script>
         // JavaScript untuk mengubah latar belakang navbar saat di-scroll
         window.addEventListener("scroll", function () {
@@ -173,6 +284,65 @@
                 navbar.classList.remove("navbar-white");
             }
         });
+        
+        $(document).ready(function() {
+        $('.edit').click(function() {
+            var id = $(this).data('id');
+
+            // Set the user ID in the hidden input field
+            $('#id').val(id);
+
+            $.ajax({
+                url: 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getUserById?id=' +
+                    id,
+                type: 'GET',
+                success: function(res) {
+                    var data = res[0];
+                    $('#editProfileModal').modal('show');
+
+                    // Set values in the form fields
+                    $('#id').val(data._id);
+                    $('#email').val(data.email);
+                    $('#nama').val(data.nama);
+                    $('#notelp').val(data.notelp);
+                    $('#password').val(data.password);
+                    
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.alamat').click(function() {
+            var id = $(this).data('id');
+
+            // Set the user ID in the hidden input field
+            $('#id').val(id);
+            $.ajax({
+                url: 'https://ap-southeast-1.aws.data.mongodb-api.com/app/application-0-bcdsp/endpoint/getUserById?id=' +
+                    id,
+                type: 'GET',
+                success: function(res) {
+                    var data = res[0];
+                    $('#modalAlamat').modal('show');
+
+                    // Set values in the form fields
+                    $('#id').val(data._id);
+                    $('#username').val(data.nama);
+                    $('#notlp').val(data.notelp);
+                    $('#alamat').val(data.alamat);
+                    // Add other form fields as needed
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+
     </script>
 </body>
 
